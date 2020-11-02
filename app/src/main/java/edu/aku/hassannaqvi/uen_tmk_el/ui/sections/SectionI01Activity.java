@@ -349,7 +349,7 @@ public class SectionI01Activity extends AppCompatActivity {
 
         Intent intent = new Intent(this, TakePhoto.class);
 
-        intent.putExtra("picID", mwraChild.getElb1() + "_" + mwraChild.getElb11() + "_" + bi.i1b.getText().toString() + "_");
+        intent.putExtra("picID", MainApp.form.getElb8a() + "_" + MainApp.form.getElb11() + "_" + bi.i1b.getText().toString() + "_");
         intent.putExtra("childName", bi.i1b.getText().toString());
 
 /*
