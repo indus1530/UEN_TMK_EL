@@ -9,20 +9,18 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.uen_tmk_el.core.DatabaseHelper;
@@ -192,7 +190,7 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
 
         JSONObject sd = new JSONObject();
 
-        sd.put("sysdate", new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date().getTime()));
+        sd.put("sysdate", MainApp.form.getSysdate());
         sd.put("username", MainApp.userName);
         sd.put("deviceid", MainApp.appInfo.getDeviceID());
         sd.put("tagid", MainApp.appInfo.getTagName());
@@ -258,8 +256,7 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
                                                                                 bi.mmd1210.isChecked() ? "10" :
                                                                                         bi.mmd1211.isChecked() ? "11" :
                                                                                                 bi.mmd1212.isChecked() ? "12" :
-                                                                                                        bi.mmd1213.isChecked() ? "12" :
-                                                                                                                bi.mmd1299.isChecked() ? "99" : "-1");
+                                                                                                        bi.mmd1299.isChecked() ? "99" : "-1");
 
         sd.put("mmd13", bi.mmd1301.isChecked() ? "1" : bi.mmd1302.isChecked() ? "2" : "-1");
 

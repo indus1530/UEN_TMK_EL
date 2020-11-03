@@ -93,13 +93,11 @@ class FamilyMembersListActivity : AppCompatActivity() {
                             }
 
                             updateKishMember(indexKishMWRA, 1)
-                            updateCounters()
 
                         }
-
+                        updateCounters()
                         finish()
                         startActivity(Intent(this@FamilyMembersListActivity, SectionE01Activity::class.java))
-
                     }
 
                 }

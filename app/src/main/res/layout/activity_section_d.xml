@@ -711,6 +711,7 @@
                             <RadioButton
                                 android:id="@+id/mmd799"
                                 android:layout_width="match_parent"
+                                android:enabled="false"
                                 android:layout_height="wrap_content"
                                 android:text="@string/mmd799" />
 
@@ -1045,6 +1046,7 @@
 
                             <RadioButton
                                 android:id="@+id/mmd1199"
+                                android:enabled="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/mmd1199" />
@@ -1167,13 +1169,8 @@
                                 android:text="@string/mmd1212" />
 
                             <RadioButton
-                                android:id="@+id/mmd1213"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:text="@string/mmd1213" />
-
-                            <RadioButton
                                 android:id="@+id/mmd1299"
+                                android:enabled="false"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:text="@string/mmd1299" />

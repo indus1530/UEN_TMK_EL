@@ -58,26 +58,28 @@ class EndingActivity : AppCompatActivity() {
     }
 
     private fun saveDraft() {
-        val statusValue = if (bi.istatusa.isChecked) "1"
-        else if (bi.istatusb.isChecked) "2"
-        else if (bi.istatusc.isChecked) "3"
-        else if (bi.istatusd.isChecked) "4"
-        else if (bi.istatuse.isChecked) "5"
-        else if (bi.istatusf.isChecked) "6"
-        else if (bi.istatusg.isChecked) "7"
-        else if (bi.istatush.isChecked) "8"
-        else if (bi.istatus96.isChecked) "96"
-        else "-1"
+        val statusValue = when {
+            bi.istatusa.isChecked -> "1"
+            bi.istatusb.isChecked -> "2"
+            bi.istatusc.isChecked -> "3"
+            bi.istatusd.isChecked -> "4"
+            bi.istatuse.isChecked -> "5"
+            bi.istatusf.isChecked -> "6"
+            bi.istatusg.isChecked -> "7"
+            bi.istatush.isChecked -> "8"
+            bi.istatus96.isChecked -> "96"
+            else -> "-1"
+        }
         form.istatus = statusValue
         form.istatus96x = if (bi.istatus96x.text.toString().trim().isEmpty()) "-1" else bi.istatus96x.text.toString()
-        form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm").format(Date().time)
+        form.endingdatetime = SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(Date().time)
 
     }
 
 
     private fun updateDB(): Boolean {
         val db = appInfo.dbHelper
-        var updcount = db.updateEnding()
+        val updcount = db.updateEnding()
         return if (updcount == 1) {
             true
         } else {

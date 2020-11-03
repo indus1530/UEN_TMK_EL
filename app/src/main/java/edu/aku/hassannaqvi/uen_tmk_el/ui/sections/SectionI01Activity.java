@@ -19,11 +19,8 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
@@ -159,7 +156,7 @@ public class SectionI01Activity extends AppCompatActivity {
     private void SaveDraft() throws JSONException {
 
         mwraChild = new MWRA_CHILD();
-        mwraChild.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date().getTime()));
+        mwraChild.setSysdate(MainApp.form.getSysdate());
         mwraChild.setUsername(MainApp.userName);
         mwraChild.setDeviceID(MainApp.appInfo.getDeviceID());
         mwraChild.setDevicetagID(MainApp.appInfo.getTagName());

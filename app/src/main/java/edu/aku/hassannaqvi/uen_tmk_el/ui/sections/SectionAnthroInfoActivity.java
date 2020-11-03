@@ -4,6 +4,7 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -189,6 +190,8 @@ public class SectionAnthroInfoActivity extends AppCompatActivity {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         disposable.dispose();
+                        Toast.makeText(SectionAnthroInfoActivity.this, "No selected mother found in this HH", Toast.LENGTH_SHORT).show();
+                        gettingAnthroData();
                     }
 
                     @Override
@@ -221,7 +224,7 @@ public class SectionAnthroInfoActivity extends AppCompatActivity {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         disposable.dispose();
-                        Snackbar.make(findViewById(android.R.id.content), "Sorry no members found", Snackbar.LENGTH_LONG).show();
+                        Snackbar.make(findViewById(android.R.id.content), "No members found", Snackbar.LENGTH_LONG).show();
                     }
 
                     @Override

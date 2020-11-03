@@ -14,10 +14,6 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Locale;
-
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
@@ -107,7 +103,7 @@ public class SectionF05Activity extends AppCompatActivity {
     private void SaveDraft() throws JSONException {
 
         death = new Death();
-        death.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date().getTime()));
+        death.setSysdate(MainApp.form.getSysdate());
         death.setUUID(MainApp.form.get_UID());
         death.setUsername(MainApp.userName);
         death.setDeviceID(MainApp.appInfo.getDeviceID());
