@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.validatorcrawler.aliazaz.Clear;
@@ -45,6 +46,7 @@ public class SectionBActivity extends AppCompatActivity {
 
     ActivitySectionBBinding bi;
     BLRandom bl;
+    MutableLiveData<Boolean> flag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,21 +77,28 @@ public class SectionBActivity extends AppCompatActivity {
 
 
     private void setupSkip() {
-
+        flag = new MutableLiveData<>();
     }
 
 
     public void BtnContinue() {
         if (!formValidation()) return;
-        try {
-            SaveDraft();
-            if (UpdateDB()) {
-                finish();
-                startActivity(new Intent(this, SectionCActivity.class));
+        gettingFormData();
+        flag.observe(this, aBoolean -> {
+            if (aBoolean) {
+                try {
+                    SaveDraft();
+                    if (UpdateDB()) {
+                        finish();
+                        startActivity(new Intent(this, SectionCActivity.class));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        });
+
+
     }
 
 
@@ -188,6 +197,13 @@ public class SectionBActivity extends AppCompatActivity {
         });
     }
 
+    private Observable<Form> getForm() {
+        return Observable.create(emitter -> {
+            emitter.onNext(appInfo.getDbHelper().getFilledForm(bi.elb1.getText().toString(), bi.elb8a.getText().toString(), bi.elb11.getText().toString()));
+            emitter.onComplete();
+        });
+    }
+
     //Getting data from db
     private void gettingBLData() {
         getBLRandom()
@@ -212,6 +228,37 @@ public class SectionBActivity extends AppCompatActivity {
                     public void onError(@NonNull Throwable e) {
                         disposable.dispose();
                         Snackbar.make(findViewById(android.R.id.content), "Sorry no HH found", Snackbar.LENGTH_LONG).show();
+                    }
+
+                    @Override
+                    public void onComplete() {
+                        disposable.dispose();
+                    }
+                });
+    }
+
+    private void gettingFormData() {
+        getForm()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Form>() {
+                    Disposable disposable;
+
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        disposable = d;
+                    }
+
+                    @Override
+                    public void onNext(@NonNull Form blRandom) {
+                        Snackbar.make(findViewById(android.R.id.content), "Sorry this HH already exist", Snackbar.LENGTH_LONG).show();
+                        flag.setValue(false);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        disposable.dispose();
+                        flag.setValue(true);
                     }
 
                     @Override

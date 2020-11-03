@@ -1287,7 +1287,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     //Get Form already exist
-    public Form getFilledForm(String district, String refno) {
+    public Form getFilledForm(String cluster, String subcluster, String hh) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -1331,9 +1331,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 FormsTable.COLUMN_APPVERSION
         };
 
-//        String whereClause = "(" + FormsTable.COLUMN_ISTATUS + " is null OR " + FormsTable.COLUMN_ISTATUS + "='') AND " + FormsTable.COLUMN_CLUSTERCODE + "=? AND " + FormsTable.COLUMN_HHNO + "=?";
-        String whereClause = FormsTable.COLUMN_SD + "=? AND " + FormsTable.COLUMN_SC + "=?";
-        String[] whereArgs = {district, refno};
+        String whereClause = FormsTable.COLUMN_ELB1 + "=? AND " + FormsTable.COLUMN_ELB8a + "=? AND " + FormsTable.COLUMN_ELB11 + "=? AND " + FormsTable.COLUMN_ISTATUS + "=?";
+        String[] whereArgs = new String[]{cluster, subcluster, hh, "1"};
         String groupBy = null;
         String having = null;
         String orderBy = FormsTable._ID + " ASC";
