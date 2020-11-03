@@ -4,7 +4,6 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -27,6 +26,7 @@ import edu.aku.hassannaqvi.uen_tmk_el.models.BLRandom;
 import edu.aku.hassannaqvi.uen_tmk_el.models.Form;
 import edu.aku.hassannaqvi.uen_tmk_el.models.MWRA_CHILD;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
+import edu.aku.hassannaqvi.uen_tmk_el.utils.EndSectionActivity;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.Observer;
@@ -42,7 +42,7 @@ import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.VILLAGES_DATA;
 import static edu.aku.hassannaqvi.uen_tmk_el.core.MainApp.appInfo;
 
 
-public class SectionAnthroInfoActivity extends AppCompatActivity {
+public class SectionAnthroInfoActivity extends AppCompatActivity implements EndSectionActivity {
 
     ActivitySectionAnthroInfoBinding bi;
     public static List<FamilyMembersContract> childListU5;
@@ -190,8 +190,7 @@ public class SectionAnthroInfoActivity extends AppCompatActivity {
                     @Override
                     public void onError(@NonNull Throwable e) {
                         disposable.dispose();
-                        Toast.makeText(SectionAnthroInfoActivity.this, "No selected mother found in this HH", Toast.LENGTH_SHORT).show();
-                        gettingAnthroData();
+                        AppUtilsKt.showDialogActivity(SectionAnthroInfoActivity.this, "No selected mother found in this HH", true);
                     }
 
                     @Override
@@ -276,4 +275,8 @@ public class SectionAnthroInfoActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void endSecActivity(boolean flag) {
+        gettingAnthroData();
+    }
 }

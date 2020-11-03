@@ -76,17 +76,15 @@
                     android:id="@+id/btnUploadPhotos"
                     style="@style/TextAppearance.AppCompat.Small"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_margin="5dp"
                     android:background="@color/colorPrimary"
                     android:elevation="2dp"
-                    android:onClick="uploadPhotos"
+                    android:onClick="@{callback.btnUploadPhotos}"
                     android:padding="16dp"
                     android:text="Upload Photos"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
+                    android:textStyle="bold" />
             </LinearLayout>
 
             <androidx.cardview.widget.CardView

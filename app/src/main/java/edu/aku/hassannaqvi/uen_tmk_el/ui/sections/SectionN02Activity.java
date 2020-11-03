@@ -346,7 +346,7 @@ public class SectionN02Activity extends AppCompatActivity implements EndSectionA
 
     private void SaveDraft(boolean flag) throws JSONException {
 
-        anthro.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date().getTime()));
+        anthro.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date().getTime()));
         anthro.setFmuid(selectedChild.getUid());
         anthro.setUUID(selectedChild.getUuid());
 

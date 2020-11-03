@@ -76,6 +76,9 @@ class FamilyMembersListActivity : AppCompatActivity() {
 
                     if (memSelectedCounter != serial - 1) return@OnActionSelectedListener false
 
+                    indexKishMWRA = null
+                    indexKishMWRAChild = null
+
                     lifecycleScope.launch {
                         if (mainVModel.getAllUnder2().isNotEmpty() && !mainVModel.mwraChildU2Lst.value.isNullOrEmpty()) {
                             indexKishMWRA = withContext(Dispatchers.Main) {

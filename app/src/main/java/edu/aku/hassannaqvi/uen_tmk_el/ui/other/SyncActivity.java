@@ -234,6 +234,36 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     }
 
+    public void btnUploadPhotos(View view) {
+
+        File directory = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), PROJECT_NAME);
+        Log.d("Directory", "uploadPhotos: " + directory);
+        if (directory.exists()) {
+            File[] files = directory.listFiles(file -> (file.getPath().endsWith(".jpg") || file.getPath().endsWith(".jpeg")));
+            Log.d("Files", "Count: " + files.length);
+            if (files.length > 0) {
+                for (File file : files) {
+                    Log.d("Files", "FileName:" + file.getName());
+                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this);
+                    syncAllPhotos.execute();
+                    try {
+                        //3000 ms delay to process upload of next file.
+                        Thread.sleep(3000);
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                editor.putString("LastPhotoUpload", new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
+                editor.apply();
+            } else {
+                Toast.makeText(this, "No photos to upload.", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "No photos were taken", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void dbBackup() {
 

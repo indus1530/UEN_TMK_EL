@@ -84,6 +84,27 @@ fun showDialogActivity(activity: Activity, message: String) {
     }
 }
 
+fun showDialogActivity(activity: Activity, message: String, defaultFlag: Boolean = true) {
+    val dialog = Dialog(activity)
+    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+    val bi: GeneralEndDialogBinding = DataBindingUtil.inflate(LayoutInflater.from(activity), R.layout.general_end_dialog, null, false)
+    dialog.setContentView(bi.root)
+    bi.content.text = message
+    dialog.setCancelable(false)
+    val params = WindowManager.LayoutParams()
+    params.copyFrom(dialog.window!!.attributes)
+    params.width = WindowManager.LayoutParams.WRAP_CONTENT
+    params.height = WindowManager.LayoutParams.WRAP_CONTENT
+    dialog.window!!.attributes = params
+    dialog.show()
+    bi.btnOk.setOnClickListener {
+        dialog.dismiss()
+        val endSecAActivity = activity as EndSectionActivity
+        endSecAActivity.endSecActivity(defaultFlag)
+    }
+    bi.btnNo.visibility = View.GONE
+}
+
 @JvmOverloads
 fun openWarningActivity(activity: Activity, message: String, defaultFlag: Boolean = true) {
     val dialog = Dialog(activity)

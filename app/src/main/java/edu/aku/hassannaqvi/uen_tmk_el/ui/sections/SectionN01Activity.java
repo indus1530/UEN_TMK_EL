@@ -92,7 +92,7 @@ public class SectionN01Activity extends AppCompatActivity {
 
     private void SaveDraft() throws JSONException {
 
-        anthro.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault()).format(new Date().getTime()));
+        anthro.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date().getTime()));
         anthro.setFmuid(MainApp.indexKishMWRA.getUid());
         anthro.setType(CONSTANTS.MWRA_ANTHRO_TYPE);
 
