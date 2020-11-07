@@ -26,10 +26,11 @@ import edu.aku.hassannaqvi.uen_tmk_el.core.MainApp;
 import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionN01Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.ui.other.MainActivity;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
+import edu.aku.hassannaqvi.uen_tmk_el.utils.EndSectionActivity;
 
 import static edu.aku.hassannaqvi.uen_tmk_el.ui.sections.SectionAnthroInfoActivity.anthro;
 
-public class SectionN01Activity extends AppCompatActivity {
+public class SectionN01Activity extends AppCompatActivity implements EndSectionActivity {
 
     ActivitySectionN01Binding bi;
 
@@ -64,13 +65,14 @@ public class SectionN01Activity extends AppCompatActivity {
     public void BtnContinue() {
         if (!formValidation()) return;
         try {
-            SaveDraft();
+            SaveDraft(true);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         if (UpdateDB()) {
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, MainActivity.class)
+                    .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
         } else {
             Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
         }
@@ -90,7 +92,7 @@ public class SectionN01Activity extends AppCompatActivity {
         }
     }
 
-    private void SaveDraft() throws JSONException {
+    private void SaveDraft(boolean flag) throws JSONException {
 
         anthro.setSysdate(new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault()).format(new Date().getTime()));
         anthro.setFmuid(MainApp.indexKishMWRA.getUid());
@@ -119,6 +121,8 @@ public class SectionN01Activity extends AppCompatActivity {
 
         json.put("can501x", bi.can501x.getText().toString());
 
+        json.put("status", flag);
+
         anthro.setsB(json.toString());
     }
 
@@ -127,12 +131,27 @@ public class SectionN01Activity extends AppCompatActivity {
     }
 
     public void BtnEnd() {
-        AppUtilsKt.openEndActivity(this);
+        AppUtilsKt.openWarningActivity(this, "Are you sure, you want to end " + bi.kishName.getText().toString().toUpperCase() + " anthro form?");
     }
-
 
     @Override
     public void onBackPressed() {
         Toast.makeText(this, "You Can't go back", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void endSecActivity(boolean flag) {
+        try {
+            SaveDraft(false);
+            if (UpdateDB()) {
+                finish();
+                startActivity(new Intent(this, MainActivity.class)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+            } else {
+                Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

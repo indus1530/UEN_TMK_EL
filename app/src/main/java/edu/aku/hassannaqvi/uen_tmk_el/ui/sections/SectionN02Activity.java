@@ -320,7 +320,8 @@ public class SectionN02Activity extends AppCompatActivity implements EndSectionA
             SaveDraft(true);
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, childListU5.size() > 0 ? SectionN02Activity.class : MainApp.indexKishMWRA != null ? SectionN01Activity.class : MainActivity.class).putExtra(ADD_ANTHRO, anthro));
+                startActivity(new Intent(this, childListU5.size() > 0 ? SectionN02Activity.class : MainApp.indexKishMWRA != null ? SectionN01Activity.class : MainActivity.class).putExtra(ADD_ANTHRO, anthro)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             } else {
                 Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             }
@@ -424,7 +425,8 @@ public class SectionN02Activity extends AppCompatActivity implements EndSectionA
             SaveDraft(false);
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, childListU5.size() > 0 ? SectionN02Activity.class : MainActivity.class).putExtra(ADD_ANTHRO, anthro));
+                startActivity(new Intent(this, childListU5.size() > 0 ? SectionN02Activity.class : MainActivity.class).putExtra(ADD_ANTHRO, anthro)
+                        .setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
             } else {
                 Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             }
