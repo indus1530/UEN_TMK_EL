@@ -3,6 +3,7 @@ package edu.aku.hassannaqvi.uen_tmk_el.sync;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
@@ -46,9 +47,15 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
         this.mContext = c;
         this.fileName = fileName;
 
-        sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         appFolder = PROJECT_NAME;
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P)
+            // Android 9+
+            sdDir = mContext.getExternalFilesDir(
+                    Environment.DIRECTORY_PICTURES);
+        else
+            // Android 5 - 8
+            sdDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
     }
 
     @Override
@@ -221,8 +228,8 @@ public class SyncAllPhotos extends AsyncTask<Void, Integer, String> {
 
     private void moveFile(String inputFile) {
         Toast.makeText(mContext, "Saving Photo...", Toast.LENGTH_LONG).show();
-        sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+        /*sdDir = Environment
+                .getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);*/
         InputStream in = null;
         OutputStream out = null;
         File inputPath = filePath;

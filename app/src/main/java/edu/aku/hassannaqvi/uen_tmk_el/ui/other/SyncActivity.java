@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
@@ -234,41 +235,11 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     }
 
-    public void btnUploadPhotos(View view) {
-
-        File directory = new File(this.getExternalFilesDir(Environment.DIRECTORY_PICTURES), PROJECT_NAME);
-        Log.d("Directory", "uploadPhotos: " + directory);
-        if (directory.exists()) {
-            File[] files = directory.listFiles(file -> (file.getPath().endsWith(".jpg") || file.getPath().endsWith(".jpeg")));
-            Log.d("Files", "Count: " + files.length);
-            if (files.length > 0) {
-                for (File file : files) {
-                    Log.d("Files", "FileName:" + file.getName());
-                    SyncAllPhotos syncAllPhotos = new SyncAllPhotos(file.getName(), this);
-                    syncAllPhotos.execute();
-                    try {
-                        //3000 ms delay to process upload of next file.
-                        Thread.sleep(3000);
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                }
-                editor.putString("LastPhotoUpload", new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").format(new Date()));
-                editor.apply();
-            } else {
-                Toast.makeText(this, "No photos to upload.", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "No photos were taken", Toast.LENGTH_SHORT).show();
-        }
-    }
-
 
     public void dbBackup() {
 
 
-        if (sharedPref.getBoolean("flag", false)) {
+        if (sharedPref.getBoolean("flag", true)) {
 
             String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(new Date()));
 
@@ -337,10 +308,17 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         finish();
     }
 
-    public void uploadPhotos(View view) {
+    public void btnUploadPhotos(View view) {
 
-        File sdDir = Environment
-                .getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File sdDir;
+
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P)
+            // Android 9+
+            sdDir = this.getExternalFilesDir(
+                    Environment.DIRECTORY_PICTURES);
+        else
+            // Android 5 - 8
+            sdDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
 
         Log.d("Files", "Path: " + sdDir);
         File directory = new File(String.valueOf(sdDir), PROJECT_NAME);

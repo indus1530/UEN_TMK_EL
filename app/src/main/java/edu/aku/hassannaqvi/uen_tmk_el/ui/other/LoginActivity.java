@@ -142,7 +142,7 @@ public class LoginActivity extends Activity {
         sharedPref = getSharedPreferences("dss01", MODE_PRIVATE);
         editor = sharedPref.edit();
 
-        if (sharedPref.getBoolean("flag", false)) {
+        if (sharedPref.getBoolean("flag", true)) {
 
             String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
 
