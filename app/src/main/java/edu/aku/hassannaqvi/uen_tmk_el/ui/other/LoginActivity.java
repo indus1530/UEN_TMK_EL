@@ -19,12 +19,10 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.text.format.DateFormat;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -41,13 +39,6 @@ import com.validatorcrawler.aliazaz.Validator;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.Objects;
 
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
@@ -64,10 +55,8 @@ import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MINIMUM_TIME_BETWEEN_UPDA
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_CONTACTS;
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_PHONE_STATE;
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.TWO_MINUTES;
+import static edu.aku.hassannaqvi.uen_tmk_el.utils.AndroidUtilityKt.dbBackup;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt.getPermissionsList;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.DATABASE_NAME;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.DB_NAME;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.PROJECT_NAME;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.SplashRepositoryKt.populatingSpinners;
 import static java.lang.Thread.sleep;
 
@@ -115,7 +104,7 @@ public class LoginActivity extends Activity {
         bi.btnSignin.setOnClickListener(view -> attemptLogin());
         db = new DatabaseHelper(this);
 //        DB backup
-        dbBackup();
+        dbBackup(this);
         setListeners();
     }
 
@@ -135,64 +124,6 @@ public class LoginActivity extends Activity {
         }
 
         return true;
-    }
-
-    public void dbBackup() {
-
-        sharedPref = getSharedPreferences("dss01", MODE_PRIVATE);
-        editor = sharedPref.edit();
-
-        if (sharedPref.getBoolean("flag", true)) {
-
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-
-            if (!dt.equals(new SimpleDateFormat("dd-MM-yy").format(new Date()))) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy").format(new Date()));
-                editor.apply();
-            }
-
-            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
-            boolean success = true;
-            if (!folder.exists()) {
-                success = folder.mkdirs();
-            }
-            if (success) {
-
-                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-                folder = new File(DirectoryName);
-                if (!folder.exists()) {
-                    success = folder.mkdirs();
-                }
-                if (success) {
-
-                    try {
-                        File dbFile = new File(this.getDatabasePath(DATABASE_NAME).getPath());
-                        FileInputStream fis = new FileInputStream(dbFile);
-                        String outFileName = DirectoryName + File.separator + DB_NAME;
-                        // Open the empty db as the output stream
-                        OutputStream output = new FileOutputStream(outFileName);
-
-                        // Transfer bytes from the inputfile to the outputfile
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = fis.read(buffer)) > 0) {
-                            output.write(buffer, 0, length);
-                        }
-                        // Close the streams
-                        output.flush();
-                        output.close();
-                        fis.close();
-                    } catch (IOException e) {
-                        Log.e("dbBackup:", Objects.requireNonNull(e.getMessage()));
-                    }
-
-                }
-
-            } else {
-                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
-            }
-        }
-
     }
 
     public void onSyncDataClick(View view) {

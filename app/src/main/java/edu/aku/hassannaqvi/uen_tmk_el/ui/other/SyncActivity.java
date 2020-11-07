@@ -21,10 +21,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.io.FileFilter;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,8 +44,7 @@ import edu.aku.hassannaqvi.uen_tmk_el.sync.SyncAllData;
 import edu.aku.hassannaqvi.uen_tmk_el.sync.SyncAllPhotos;
 import edu.aku.hassannaqvi.uen_tmk_el.sync.SyncDevice;
 
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.DATABASE_NAME;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.DB_NAME;
+import static edu.aku.hassannaqvi.uen_tmk_el.utils.AndroidUtilityKt.dbBackup;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.PROJECT_NAME;
 
 public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDevicInterface {
@@ -81,7 +76,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
         sharedPref = getSharedPreferences("src", MODE_PRIVATE);
         editor = sharedPref.edit();
         db = new DatabaseHelper(this);
-        dbBackup();
+        dbBackup(this);
 
         sync_flag = getIntent().getBooleanExtra(CONSTANTS.SYNC_LOGIN, false);
 
@@ -235,64 +230,6 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
 
     }
 
-
-    public void dbBackup() {
-
-
-        if (sharedPref.getBoolean("flag", true)) {
-
-            String dt = sharedPref.getString("dt", new SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(new Date()));
-
-            if (!dt.equals(new SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(new Date()))) {
-                editor.putString("dt", new SimpleDateFormat("dd-MM-yy", Locale.getDefault()).format(new Date()));
-                editor.apply();
-            }
-
-            File folder = new File(Environment.getExternalStorageDirectory() + File.separator + PROJECT_NAME);
-            boolean success = true;
-            if (!folder.exists()) {
-                success = folder.mkdirs();
-            }
-            if (success) {
-                DirectoryName = folder.getPath() + File.separator + sharedPref.getString("dt", "");
-                folder = new File(DirectoryName);
-                if (!folder.exists()) {
-                    success = folder.mkdirs();
-                }
-                if (success) {
-
-                    try {
-                        File dbFile = new File(this.getDatabasePath(DATABASE_NAME).getPath());
-                        FileInputStream fis = new FileInputStream(dbFile);
-
-                        String outFileName = DirectoryName + File.separator + DB_NAME;
-
-                        // Open the empty db as the output stream
-                        OutputStream output = new FileOutputStream(outFileName);
-
-                        // Transfer bytes from the inputfile to the outputfile
-                        byte[] buffer = new byte[1024];
-                        int length;
-                        while ((length = fis.read(buffer)) > 0) {
-                            output.write(buffer, 0, length);
-                        }
-                        // Close the streams
-                        output.flush();
-                        output.close();
-                        fis.close();
-                    } catch (IOException e) {
-                        Log.e("dbBackup:", e.getMessage());
-                    }
-
-                }
-
-            } else {
-                Toast.makeText(this, "Not create folder", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    }
-
     @Override
     public void processFinish(boolean flag) {
         if (flag) {
@@ -398,7 +335,7 @@ public class SyncActivity extends AppCompatActivity implements SyncDevice.SyncDe
                 editor.putBoolean("flag", true);
                 editor.commit();
 
-                dbBackup();
+                dbBackup(mContext);
 
             }, 1200);
         }
