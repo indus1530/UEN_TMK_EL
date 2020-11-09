@@ -269,13 +269,13 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
         // Update in ViewModel
         mainVModel.updateFamilyMembers(fmc);
 
-        if (Integer.parseInt(fmc.getAge()) >= 15 && Integer.parseInt(fmc.getAge()) < 49 && fmc.getGender().equals("2") && !bi.mmd702.isChecked())
+        if (Integer.parseInt(fmc.getAge()) >= 15 && Integer.parseInt(fmc.getAge()) < 50 && fmc.getGender().equals("2") && !bi.mmd702.isChecked())
             mainVModel.setMWRA(fmc);
         else if (Integer.parseInt(fmc.getAge()) < 5) {
             mainVModel.setChildU5(fmc);
             if (fmc.getAgeMonths() < 24) {
                 if (motherFMC == null) return;
-                if (Integer.parseInt(motherFMC.getAge()) >= 15 && Integer.parseInt(motherFMC.getAge()) < 49)
+                if (Integer.parseInt(motherFMC.getAge()) >= 15 && Integer.parseInt(motherFMC.getAge()) < 50)
                     mainVModel.setMwraChildU2(motherFMC);
             }
         }
