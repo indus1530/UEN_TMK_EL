@@ -185,10 +185,9 @@ public class SectionF01Activity extends AppCompatActivity {
 
 
     private boolean setupNextButtonText() {
+        Clear.clearAllFields(bi.fldGrpSecF01);
         if (mwraNames.size() > 2) {
-            Clear.clearAllFields(bi.fldGrpSecF01);
             bi.btnContinue.setText("Next MWRA");
-            bi.f1b.setFocusable(true);
             return false;
         } else if (mwraNames.size() == 2) {
             bi.btnContinue.setText("Next Section");
