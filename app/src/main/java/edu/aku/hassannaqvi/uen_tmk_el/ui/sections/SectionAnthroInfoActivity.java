@@ -190,6 +190,7 @@ public class SectionAnthroInfoActivity extends AppCompatActivity implements EndS
                     @Override
                     public void onError(@NonNull Throwable e) {
                         disposable.dispose();
+                        MainApp.indexKishMWRA = null;
                         AppUtilsKt.showDialogActivity(SectionAnthroInfoActivity.this, "No selected mother found in this HH", true);
                     }
 
