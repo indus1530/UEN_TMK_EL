@@ -326,8 +326,8 @@
                                 android:inputType="number"
                                 android:maxLength="2"
                                 app:defaultValue="98"
-                                app:maxValue="31"
-                                app:minValue="1"
+                                app:maxValue="29"
+                                app:minValue="0"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -355,8 +355,8 @@
                                 android:inputType="number"
                                 android:maxLength="2"
                                 app:defaultValue="98"
-                                app:maxValue="12"
-                                app:minValue="1"
+                                app:maxValue="11"
+                                app:minValue="0"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -380,11 +380,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:hint="####"
+                                android:hint="##"
                                 android:inputType="number"
-                                android:maxLength="4"
-                                app:maxValue="2020"
-                                app:minValue="2014"
+                                android:maxLength="2"
+                                app:maxValue="5"
+                                app:minValue="1"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -532,8 +532,8 @@
                                 android:inputType="number"
                                 android:maxLength="2"
                                 app:defaultValue="98"
-                                app:maxValue="29"
-                                app:minValue="0"
+                                app:maxValue="31"
+                                app:minValue="1"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -561,8 +561,8 @@
                                 android:inputType="number"
                                 android:maxLength="2"
                                 app:defaultValue="98"
-                                app:maxValue="11"
-                                app:minValue="0"
+                                app:maxValue="12"
+                                app:minValue="1"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -586,11 +586,11 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:gravity="center"
-                                android:hint="##"
+                                android:hint="####"
                                 android:inputType="number"
-                                android:maxLength="2"
-                                app:maxValue="5"
-                                app:minValue="1"
+                                android:maxLength="4"
+                                app:maxValue="2020"
+                                app:minValue="2014"
                                 app:type="range" />
 
                         </LinearLayout>
