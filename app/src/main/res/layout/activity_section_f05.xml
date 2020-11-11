@@ -59,10 +59,10 @@
                         android:id="@+id/cmf9a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         android:hint="@string/cmf9a"
                         android:inputType="number"
-                        android:maxLength="2"
-                        android:enabled="false" />
+                        android:maxLength="2" />
 
                 </LinearLayout>
 
@@ -144,11 +144,12 @@
                             android:text="@string/Q_cmf9c" />
                     </RelativeLayout>
 
-                    <EditText
+                    <Spinner
                         android:id="@+id/cmf9c"
+                        style="@style/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="@string/cmf9c" />
+                        android:layout_margin="10dp" />
 
                 </LinearLayout>
 
@@ -191,6 +192,7 @@
                         android:id="@+id/cmf9d"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:enabled="false"
                         android:hint="@string/cmf9d"
                         android:inputType="number"
                         android:maxLength="2"

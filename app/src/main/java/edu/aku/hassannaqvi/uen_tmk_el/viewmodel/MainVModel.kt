@@ -113,6 +113,11 @@ class MainVModel : ViewModel() {
         return Pair(family?.map { it.serialno.toInt() }, family?.map { it.name })
     }
 
+    fun getAllMarriedWomen(): Pair<List<Int>?, List<String>?> {
+        val family = familyMemLst.value?.filter { it -> (it.age.toInt() >= 15 && it.gender == "2" && it.marital != "1") }
+        return Pair(family?.map { it.serialno.toInt() }, family?.map { it.name })
+    }
+
     fun getAllRespondent(motherSerial: Int): Pair<List<Int>?, List<String>?> {
         val family = familyMemLst.value?.filter { it -> (it.age.toInt() >= 15) && it.serialno.toInt() != motherSerial }
         return Pair(family?.map { it.serialno.toInt() }, family?.map { it.name })

@@ -3,6 +3,8 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,6 +16,9 @@ import com.validatorcrawler.aliazaz.Validator;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
@@ -21,8 +26,10 @@ import edu.aku.hassannaqvi.uen_tmk_el.core.DatabaseHelper;
 import edu.aku.hassannaqvi.uen_tmk_el.core.MainApp;
 import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionF05Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.models.Death;
+import edu.aku.hassannaqvi.uen_tmk_el.ui.list_activity.FamilyMembersListActivity;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.DateUtils;
+import kotlin.Pair;
 
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.C_DEATH_COUNT;
 
@@ -48,6 +55,31 @@ public class SectionF05Activity extends AppCompatActivity {
     private void setupContent() {
         count = Integer.parseInt(getIntent().getStringExtra(C_DEATH_COUNT));
         setupNextButtonText();
+
+        //Set Spinner
+        Pair<List<Integer>, List<String>> mList = FamilyMembersListActivity.mainVModel.getAllMarriedWomen();
+        List<String> mother = new ArrayList<String>() {
+            {
+                add("....");
+                add("N/A");
+                addAll(mList.getSecond());
+            }
+        };
+        bi.cmf9c.setAdapter(new ArrayAdapter<>(this, android.R.layout.simple_dropdown_item_1line, mother));
+
+        bi.cmf9c.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (i == 0) return;
+                String serial = i == 1 ? "97" : String.valueOf(mList.getFirst().get(i - 1));
+                bi.cmf9d.setText(serial);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private boolean setupNextButtonText() {
@@ -118,7 +150,7 @@ public class SectionF05Activity extends AppCompatActivity {
         json.put("elb8a", MainApp.form.getElb8a());
         json.put("cmf9a", bi.cmf9a.getText().toString());
         json.put("cmf9b", bi.cmf9b.getText().toString());
-        json.put("cmf9c", bi.cmf9c.getText().toString());
+        json.put("cmf9c", bi.cmf9c.getSelectedItem().toString());
         json.put("cmf9d", bi.cmf9d.getText().toString());
 
         json.put("cmf9e", bi.cmf9e01.isChecked() ? "1"
