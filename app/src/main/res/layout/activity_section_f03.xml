@@ -351,14 +351,107 @@
 
                     </RelativeLayout>
 
-                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
-                        android:id="@+id/raf7e"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="DD/MM/YYYY"
-                        app:dateFormat="dd-MM-yyyy"
-                        app:maxDate="CR_DATE" />
+                        android:orientation="horizontal">
+
+                        <!--DAY-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/raf7cd" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/raf7ed"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                app:defaultValue="98"
+                                app:maxValue="31"
+                                app:minValue="1"
+                                app:type="range" />
+
+                        </LinearLayout>
+
+                        <!--MONTH-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/raf7cm" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/raf7em"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                app:defaultValue="98"
+                                app:maxValue="12"
+                                app:minValue="1"
+                                app:type="range" />
+
+                        </LinearLayout>
+
+                        <!--YEAR-->
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical">
+
+                            <TextView
+                                style="@style/textView"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="@string/raf7cy" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/raf7ey"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:hint="####"
+                                android:inputType="number"
+                                android:maxLength="4"
+                                app:maxValue="2020"
+                                app:minValue="2014"
+                                app:type="range" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <!-- <io.blackbox_vision.datetimepickeredittext.view.DatePickerEditText
+                         android:id="@+id/raf7e"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:gravity="center"
+                         android:hint="DD/MM/YYYY"
+                         app:dateFormat="dd-MM-yyyy"
+                         app:maxDate="CR_DATE" />-->
 
                     <!--                    app:maxDate="CR_DATE"-->
                     <!--                    app:minDate="20/10/2015"-->

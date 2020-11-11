@@ -4,15 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
@@ -21,7 +20,6 @@ import edu.aku.hassannaqvi.uen_tmk_el.core.MainApp;
 import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionF03Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.models.Death;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
-import edu.aku.hassannaqvi.uen_tmk_el.utils.DateUtils;
 
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.DEATH_COUNT;
 
@@ -40,8 +38,8 @@ public class SectionF03Activity extends AppCompatActivity {
         setupContent();
 
         //for 5 years in RAF73 (Age at death) calendar
-        String dt = DateUtils.getYearsBack("dd/MM/yyyy", -5);
-        bi.raf7e.setMinDate(dt);
+        /*String dt = DateUtils.getYearsBack("dd/MM/yyyy", -5);
+        bi.raf7e.setMinDate(dt);*/
     }
 
 
@@ -128,7 +126,10 @@ public class SectionF03Activity extends AppCompatActivity {
                 : bi.raf7d05.isChecked() ? "5"
                 : "-1");
 
-        json.put("raf7e", bi.raf7e.getText().toString().trim().isEmpty() ? "-1" : bi.raf7e.getText().toString());
+//        json.put("raf7e", bi.raf7e.getText().toString().trim().isEmpty() ? "-1" : bi.raf7e.getText().toString());
+        json.put("raf7cd", bi.raf7ed.getText().toString());
+        json.put("raf7cm", bi.raf7em.getText().toString());
+        json.put("raf7cy", bi.raf7ey.getText().toString());
 
         json.put("raf7f", bi.raf7f01.isChecked() ? "1"
                 : bi.raf7f02.isChecked() ? "2"
