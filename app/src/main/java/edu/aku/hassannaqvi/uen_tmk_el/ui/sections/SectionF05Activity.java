@@ -10,6 +10,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -23,8 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
@@ -112,8 +113,14 @@ public class SectionF05Activity extends AppCompatActivity {
                         (!bi.cmf9hm.isRangeTextValidate()) ||
                         (!bi.cmf9hy.isRangeTextValidate()))
                     return;
+
+                if (bi.cmf9hd.getText().toString().equals("98") && bi.cmf9hm.getText().toString().equals("98")) {
+                    imFlag = true;
+                    return;
+                }
+
                 int day = bi.cmf9hd.getText().toString().equals("98") ? 15 : Integer.parseInt(txt01);
-                int month = bi.cmf9hm.getText().toString().equals("98") ? 15 : Integer.parseInt(txt02);
+                int month = Integer.parseInt(txt02);
                 int year = Integer.parseInt(txt03);
 
                 AgeModel age;

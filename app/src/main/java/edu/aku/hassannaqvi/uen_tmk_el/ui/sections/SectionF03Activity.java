@@ -7,6 +7,9 @@ import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -18,8 +21,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
@@ -81,8 +82,13 @@ public class SectionF03Activity extends AppCompatActivity {
                         (!bi.raf7em.isRangeTextValidate()) ||
                         (!bi.raf7ey.isRangeTextValidate()))
                     return;
+
+                if (bi.raf7ed.getText().toString().equals("98") && bi.raf7em.getText().toString().equals("98")) {
+                    imFlag = true;
+                    return;
+                }
                 int day = bi.raf7ed.getText().toString().equals("98") ? 15 : Integer.parseInt(txt01);
-                int month = bi.raf7em.getText().toString().equals("98") ? 15 : Integer.parseInt(txt02);
+                int month = Integer.parseInt(txt02);
                 int year = Integer.parseInt(txt03);
 
                 AgeModel age;
