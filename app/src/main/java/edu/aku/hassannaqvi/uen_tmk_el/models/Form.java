@@ -2,13 +2,13 @@ package edu.aku.hassannaqvi.uen_tmk_el.models;
 
 import android.database.Cursor;
 
-import androidx.lifecycle.LiveData;
-
 import com.google.gson.GsonBuilder;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
 
+import androidx.lifecycle.LiveData;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.FormsContract.FormsTable;
 
 /**
@@ -68,9 +68,16 @@ public class Form extends LiveData<Form> {
     private String deviceid = "";
     private String tagid = "";
 
-    //For section selection
-    private SectionSelection secSelection;
+    //Date Settings
+    private LocalDate localDate = null;
 
+    public LocalDate getLocalDate() {
+        return localDate;
+    }
+
+    public void setLocalDate(LocalDate localDate) {
+        this.localDate = localDate;
+    }
 
     public Form() {
     }

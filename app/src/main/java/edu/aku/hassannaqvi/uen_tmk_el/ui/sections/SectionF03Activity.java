@@ -2,6 +2,9 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.widget.Toast;
 
 import com.validatorcrawler.aliazaz.Clear;
@@ -9,6 +12,11 @@ import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.Instant;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -18,6 +26,8 @@ import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
 import edu.aku.hassannaqvi.uen_tmk_el.core.DatabaseHelper;
 import edu.aku.hassannaqvi.uen_tmk_el.core.MainApp;
 import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionF03Binding;
+import edu.aku.hassannaqvi.uen_tmk_el.datecollection.AgeModel;
+import edu.aku.hassannaqvi.uen_tmk_el.datecollection.DateRepository;
 import edu.aku.hassannaqvi.uen_tmk_el.models.Death;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
 
@@ -29,6 +39,8 @@ public class SectionF03Activity extends AppCompatActivity {
     ActivitySectionF03Binding bi;
     private Death death;
     int count, mCounter = 1;
+    boolean imFlag = true;
+    Instant dtInstant = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +58,64 @@ public class SectionF03Activity extends AppCompatActivity {
     private void setupContent() {
         count = Integer.parseInt(getIntent().getStringExtra(DEATH_COUNT));
         setupNextButtonText();
+
+        bi.raf7ey.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dtInstant = null;
+//                if (!bi.im021.isChecked() || bi.im0497.isChecked()) return;
+                String txt01, txt02, txt03;
+                bi.raf7ed.setEnabled(true);
+                bi.raf7em.setEnabled(true);
+                if (!TextUtils.isEmpty(bi.raf7ed.getText()) && !TextUtils.isEmpty(bi.raf7em.getText()) && !TextUtils.isEmpty(bi.raf7ey.getText())) {
+                    txt01 = bi.raf7ed.getText().toString();
+                    txt02 = bi.raf7em.getText().toString();
+                    txt03 = bi.raf7ey.getText().toString();
+                } else return;
+                if ((!bi.raf7ed.isRangeTextValidate()) ||
+                        (!bi.raf7em.isRangeTextValidate()) ||
+                        (!bi.raf7ey.isRangeTextValidate()))
+                    return;
+                int day = bi.raf7ed.getText().toString().equals("98") ? 15 : Integer.parseInt(txt01);
+                int month = bi.raf7em.getText().toString().equals("98") ? 15 : Integer.parseInt(txt02);
+                int year = Integer.parseInt(txt03);
+
+                AgeModel age;
+                if (MainApp.form.getLocalDate() != null)
+                    age = DateRepository.Companion.getCalculatedAge(MainApp.form.getLocalDate(), year, month, day);
+                else
+                    age = DateRepository.Companion.getCalculatedAge(year, month, day);
+                if (age == null) {
+                    bi.raf7ey.setError("Invalid date");
+                    imFlag = false;
+                } else {
+                    imFlag = true;
+                    bi.raf7ed.setEnabled(false);
+                    bi.raf7em.setEnabled(false);
+
+                    //Setting Date
+                    try {
+                        dtInstant = Instant.parse(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).parse(
+                                day + "-" + month + "-" + year
+                        )) + "T06:24:01Z");
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
     }
 
 
@@ -152,6 +222,10 @@ public class SectionF03Activity extends AppCompatActivity {
 
 
     private boolean formValidation() {
+        if (!imFlag) {
+            Toast.makeText(this, "Invalid date!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return Validator.emptyCheckingContainer(this, bi.GrpName);
     }
 

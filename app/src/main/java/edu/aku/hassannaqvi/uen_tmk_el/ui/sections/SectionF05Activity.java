@@ -2,6 +2,9 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,9 +15,13 @@ import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.Instant;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
@@ -24,6 +31,8 @@ import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
 import edu.aku.hassannaqvi.uen_tmk_el.core.DatabaseHelper;
 import edu.aku.hassannaqvi.uen_tmk_el.core.MainApp;
 import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionF05Binding;
+import edu.aku.hassannaqvi.uen_tmk_el.datecollection.AgeModel;
+import edu.aku.hassannaqvi.uen_tmk_el.datecollection.DateRepository;
 import edu.aku.hassannaqvi.uen_tmk_el.models.Death;
 import edu.aku.hassannaqvi.uen_tmk_el.ui.list_activity.FamilyMembersListActivity;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
@@ -35,6 +44,8 @@ public class SectionF05Activity extends AppCompatActivity {
 
     ActivitySectionF05Binding bi;
     int count, cCounter = 1;
+    boolean imFlag = true;
+    Instant dtInstant = null;
     private Death death;
 
     @Override
@@ -69,12 +80,70 @@ public class SectionF05Activity extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if (i == 0) return;
-                String serial = i == 1 ? "97" : String.valueOf(mList.getFirst().get(i - 1));
+                String serial = i == 1 ? "97" : String.valueOf(mList.getFirst().get(i - 2));
                 bi.cmf9d.setText(serial);
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        bi.cmf9hy.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                dtInstant = null;
+//                if (!bi.im021.isChecked() || bi.im0497.isChecked()) return;
+                String txt01, txt02, txt03;
+                bi.cmf9hd.setEnabled(true);
+                bi.cmf9hm.setEnabled(true);
+                if (!TextUtils.isEmpty(bi.cmf9hd.getText()) && !TextUtils.isEmpty(bi.cmf9hm.getText()) && !TextUtils.isEmpty(bi.cmf9hy.getText())) {
+                    txt01 = bi.cmf9hd.getText().toString();
+                    txt02 = bi.cmf9hm.getText().toString();
+                    txt03 = bi.cmf9hy.getText().toString();
+                } else return;
+                if ((!bi.cmf9hd.isRangeTextValidate()) ||
+                        (!bi.cmf9hm.isRangeTextValidate()) ||
+                        (!bi.cmf9hy.isRangeTextValidate()))
+                    return;
+                int day = bi.cmf9hd.getText().toString().equals("98") ? 15 : Integer.parseInt(txt01);
+                int month = bi.cmf9hm.getText().toString().equals("98") ? 15 : Integer.parseInt(txt02);
+                int year = Integer.parseInt(txt03);
+
+                AgeModel age;
+                if (MainApp.form.getLocalDate() != null)
+                    age = DateRepository.Companion.getCalculatedAge(MainApp.form.getLocalDate(), year, month, day);
+                else
+                    age = DateRepository.Companion.getCalculatedAge(year, month, day);
+                if (age == null) {
+                    bi.cmf9hy.setError("Invalid date");
+                    imFlag = false;
+                } else {
+                    imFlag = true;
+                    bi.cmf9hd.setEnabled(false);
+                    bi.cmf9hm.setEnabled(false);
+
+                    //Setting Date
+                    try {
+                        dtInstant = Instant.parse(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH).format(new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH).parse(
+                                day + "-" + month + "-" + year
+                        )) + "T06:24:01Z");
+
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
 
             }
         });
@@ -192,6 +261,10 @@ public class SectionF05Activity extends AppCompatActivity {
 
 
     private boolean formValidation() {
+        if (!imFlag) {
+            Toast.makeText(this, "Invalid date!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
         return Validator.emptyCheckingContainer(this, bi.GrpName);
     }
 

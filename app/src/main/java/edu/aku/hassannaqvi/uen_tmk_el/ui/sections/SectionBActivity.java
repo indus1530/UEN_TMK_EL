@@ -6,21 +6,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.MutableLiveData;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.Instant;
+import org.threeten.bp.LocalDateTime;
+import org.threeten.bp.ZoneId;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.MutableLiveData;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.FormsContract;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.VillageContract;
@@ -162,6 +165,16 @@ public class SectionBActivity extends AppCompatActivity {
         json.put("rndt", bl.getRandDT());
 
         form.setsC(json.toString());
+
+        //Setting Date
+        try {
+            Instant instant = Instant.parse(new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH)
+                    .format(new SimpleDateFormat("dd-MM-yyyy", Locale.ENGLISH)
+                            .parse(bi.elb12.getText().toString())) + "T06:24:01Z");
+            form.setLocalDate(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 
 
