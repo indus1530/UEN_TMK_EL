@@ -7,9 +7,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
-
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -19,6 +16,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.DeathContract;
@@ -28,7 +27,6 @@ import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionF05Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.models.Death;
 import edu.aku.hassannaqvi.uen_tmk_el.ui.list_activity.FamilyMembersListActivity;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
-import edu.aku.hassannaqvi.uen_tmk_el.utils.DateUtils;
 import kotlin.Pair;
 
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.C_DEATH_COUNT;
@@ -47,8 +45,8 @@ public class SectionF05Activity extends AppCompatActivity {
         setupContent();
 
         //for 5 years in CMF9H (Age at death) calendar
-        String dt = DateUtils.getYearsBack("dd/MM/yyyy", -5);
-        bi.cmf9h.setMinDate(dt);
+        /*String dt = DateUtils.getYearsBack("dd/MM/yyyy", -5);
+        bi.cmf9h.setMinDate(dt);*/
     }
 
 
@@ -168,7 +166,11 @@ public class SectionF05Activity extends AppCompatActivity {
                 : bi.cmf9g05.isChecked() ? "5"
                 : "-1");
 
-        json.put("cmf9h", bi.cmf9h.getText().toString());
+//        json.put("cmf9h", bi.cmf9h.getText().toString());
+
+        json.put("cmf9hd", bi.cmf9hd.getText().toString().trim().isEmpty() ? "-1" : bi.cmf9hd.getText().toString());
+        json.put("cmf9hm", bi.cmf9hm.getText().toString().trim().isEmpty() ? "-1" : bi.cmf9hm.getText().toString());
+        json.put("cmf9hy", bi.cmf9hy.getText().toString().trim().isEmpty() ? "-1" : bi.cmf9hy.getText().toString());
 
         json.put("cmf9i", bi.cmf9i1.isChecked() ? "1"
                 : bi.cmf9i2.isChecked() ? "2"
