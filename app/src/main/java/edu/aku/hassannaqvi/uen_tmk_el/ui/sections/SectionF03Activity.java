@@ -204,9 +204,9 @@ public class SectionF03Activity extends AppCompatActivity {
 
 //        json.put("raf7e", bi.raf7e.getText().toString().trim().isEmpty() ? "-1" : bi.raf7e.getText().toString());
 
-        json.put("raf7cd", bi.raf7ed.getText().toString().trim().isEmpty() ? "-1" : bi.raf7ed.getText().toString());
-        json.put("raf7cm", bi.raf7em.getText().toString().trim().isEmpty() ? "-1" : bi.raf7em.getText().toString());
-        json.put("raf7cy", bi.raf7ey.getText().toString().trim().isEmpty() ? "-1" : bi.raf7ey.getText().toString());
+        json.put("raf7ed", bi.raf7ed.getText().toString().trim().isEmpty() ? "-1" : bi.raf7ed.getText().toString());
+        json.put("raf7em", bi.raf7em.getText().toString().trim().isEmpty() ? "-1" : bi.raf7em.getText().toString());
+        json.put("raf7ey", bi.raf7ey.getText().toString().trim().isEmpty() ? "-1" : bi.raf7ey.getText().toString());
 
         json.put("raf7f", bi.raf7f01.isChecked() ? "1"
                 : bi.raf7f02.isChecked() ? "2"
