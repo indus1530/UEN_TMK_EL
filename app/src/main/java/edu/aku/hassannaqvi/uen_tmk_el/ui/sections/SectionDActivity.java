@@ -3,6 +3,7 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -17,7 +18,10 @@ import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.Instant;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +39,7 @@ import edu.aku.hassannaqvi.uen_tmk_el.viewmodel.MainVModel;
 import kotlin.Pair;
 
 import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.SERIAL_EXTRA;
+import static edu.aku.hassannaqvi.uen_tmk_el.core.MainApp.form;
 
 public class SectionDActivity extends AppCompatActivity implements EndSectionActivity {
 
@@ -45,6 +50,7 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
     private int serial = 0;
     private Pair<List<Integer>, List<String>> menSLst;
     private Pair<List<Integer>, List<String>> womenSLst;
+    boolean dtFlag = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,11 +149,11 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
     private void SaveDraft() throws JSONException {
 
         if (fmcFLAG) {
-            fmc.setUuid(MainApp.form.get_UID());
+            fmc.setUuid(form.get_UID());
 //            fmc.setLuid(MainApp.form.getLuid());
-            fmc.setClusterno(MainApp.form.getElb1());
-            fmc.setSubclusterno(MainApp.form.getElb8a());
-            fmc.setHhno(MainApp.form.getElb11());
+            fmc.setClusterno(form.getElb1());
+            fmc.setSubclusterno(form.getElb8a());
+            fmc.setHhno(form.getElb11());
             fmc.setSerialno(bi.mmd1.getText().toString());
             fmc.setName(bi.mmd2.getText().toString());
             fmc.setRelHH(bi.mmd301.isChecked() ? "1" :
@@ -190,7 +196,7 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
 
         JSONObject sd = new JSONObject();
 
-        sd.put("sysdate", MainApp.form.getSysdate());
+        sd.put("sysdate", form.getSysdate());
         sd.put("username", MainApp.userName);
         sd.put("deviceid", MainApp.appInfo.getDeviceID());
         sd.put("tagid", MainApp.appInfo.getTagName());
@@ -260,7 +266,7 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
 
         sd.put("mmd13", bi.mmd1301.isChecked() ? "1" : bi.mmd1302.isChecked() ? "2" : "-1");
 
-        sd.put("tagid", MainApp.form.getTagid());
+        sd.put("tagid", form.getTagid());
 
         fmc.setAvailable(bi.mmd1301.isChecked() ? "1" : bi.mmd1302.isChecked() ? "2" : "-1");
 
@@ -290,9 +296,9 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
             if (!Validator.emptyEditTextPicker(this, bi.mmd601))
                 return false;
 
-            if (Integer.parseInt(bi.mmd601.getText().toString()) == 0 && Integer.parseInt(bi.mmd602.getText().toString()) == 0) {
-                bi.mmd602.setError("Year and Month both cannot be 0");
-                bi.mmd602.setFocusable(true);
+            if (bi.mmd601.isEnabled() && Integer.parseInt(bi.mmd601.getText().toString()) == 0 && Integer.parseInt(bi.mmd602.getText().toString()) == 0) {
+                bi.mmd602.setError("Year and Month can't be zero");
+                bi.mmd602.requestFocus();
                 return false;
             }
             return true;
@@ -315,6 +321,7 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
 
                 @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    bi.mmd503.setText(null);
                     bi.mmd601.setText(null);
                     bi.mmd602.setText(null);
                 }
@@ -335,31 +342,52 @@ public class SectionDActivity extends AppCompatActivity implements EndSectionAct
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                bi.mmd601.setEnabled(false);
                 bi.mmd602.setEnabled(false);
-                bi.mmd601.setText(null);
                 bi.mmd602.setText(null);
-                if (bi.mmd501.getText().toString().isEmpty() || bi.mmd502.getText().toString().isEmpty() || bi.mmd503.getText().toString().isEmpty())
+                bi.mmd601.setEnabled(false);
+                bi.mmd601.setText(null);
+                //        form.setCalculatedDOB(null);
+                if (TextUtils.isEmpty(bi.mmd501.getText()) || TextUtils.isEmpty(bi.mmd502.getText()) || TextUtils.isEmpty(bi.mmd503.getText()))
+                    return;
+                if (!bi.mmd501.isRangeTextValidate() || !bi.mmd502.isRangeTextValidate() || !bi.mmd503.isRangeTextValidate())
                     return;
                 if (bi.mmd501.getText().toString().equals("98") && bi.mmd502.getText().toString().equals("98") && bi.mmd503.getText().toString().equals("9998")) {
-                    bi.mmd601.setEnabled(true);
                     bi.mmd602.setEnabled(true);
+                    bi.mmd601.setEnabled(true);
+                    dtFlag = true;
                     return;
                 }
-
                 int day = bi.mmd501.getText().toString().equals("98") ? 15 : Integer.parseInt(bi.mmd501.getText().toString());
                 int month = Integer.parseInt(bi.mmd502.getText().toString());
                 int year = Integer.parseInt(bi.mmd503.getText().toString());
 
-                AgeModel age = DateRepository.Companion.getCalculatedAge(year, month, day);
-                if (age == null) return;
-                bi.mmd601.setText(String.valueOf(age.getYear()));
+                AgeModel age;
+                if (form.getLocalDate() != null)
+                    age = DateRepository.Companion.getCalculatedAge(form.getLocalDate(), year, month, day);
+                else
+                    age = DateRepository.Companion.getCalculatedAge(year, month, day);
+                if (age == null) {
+                    bi.mmd503.setError("Invalid date!!");
+                    dtFlag = false;
+                    return;
+                }
+                dtFlag = true;
                 bi.mmd602.setText(String.valueOf(age.getMonth()));
+                bi.mmd601.setText(String.valueOf(age.getYear()));
+
+                //Setting Date
+                try {
+                    Instant instant = Instant.parse(new SimpleDateFormat("yyyy-MM-dd").format(new SimpleDateFormat("dd-MM-yyyy").parse(
+                            day + "-" + month + "-" + year
+                    )) + "T06:24:01Z");
+                    //            form.setCalculatedDOB(LocalDateTime.ofInstant(instant, ZoneId.systemDefault()).toLocalDate());
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
             }
         });
 

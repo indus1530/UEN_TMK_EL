@@ -173,7 +173,7 @@
                                 android:maxLength="2"
                                 app:defaultValue="98"
                                 app:maxValue="30"
-                                app:minValue="1"
+                                app:minValue="0"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -202,7 +202,7 @@
                                 android:maxLength="2"
                                 app:defaultValue="98"
                                 app:maxValue="11"
-                                app:minValue="1"
+                                app:minValue="0"
                                 app:type="range" />
 
                         </LinearLayout>
@@ -228,9 +228,8 @@
                                 android:gravity="center"
                                 android:hint="##"
                                 android:inputType="number"
-                                app:defaultValue="98"
                                 android:maxLength="2"
-                                app:maxValue="99"
+                                app:maxValue="95"
                                 app:minValue="15"
                                 app:type="range" />
 

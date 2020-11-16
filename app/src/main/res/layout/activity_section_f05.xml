@@ -326,7 +326,7 @@
                                 android:inputType="number"
                                 android:maxLength="2"
                                 app:defaultValue="98"
-                                app:maxValue="29"
+                                app:maxValue="30"
                                 app:minValue="0"
                                 app:type="range" />
 
@@ -384,7 +384,7 @@
                                 android:inputType="number"
                                 android:maxLength="2"
                                 app:maxValue="5"
-                                app:minValue="1"
+                                app:minValue="0"
                                 app:type="range" />
 
                         </LinearLayout>

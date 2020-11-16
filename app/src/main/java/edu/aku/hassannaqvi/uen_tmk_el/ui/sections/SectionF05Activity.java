@@ -272,7 +272,17 @@ public class SectionF05Activity extends AppCompatActivity {
             Toast.makeText(this, "Invalid date!", Toast.LENGTH_SHORT).show();
             return false;
         }
-        return Validator.emptyCheckingContainer(this, bi.GrpName);
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName))
+            return false;
+
+        if (bi.cmf9fy.getText().toString().equals("0") && bi.cmf9fm.getText().toString().equals("0") && bi.cmf9fd.getText().toString().equals("0")) {
+            Toast.makeText(this, "Day, Month & Year can't be zero", Toast.LENGTH_SHORT).show();
+            bi.cmf9fy.requestFocus();
+            return false;
+        }
+
+        return true;
+
     }
 
 
