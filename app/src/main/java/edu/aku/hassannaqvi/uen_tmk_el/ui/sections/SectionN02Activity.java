@@ -113,7 +113,7 @@ public class SectionN02Activity extends AppCompatActivity implements EndSectionA
                     if (bi.can10.getText().toString().split(".").length > 1 || bi.can11.getText().toString().split(".").length > 1)
                         return;
                     double value = Math.abs(Double.parseDouble(bi.can10.getText().toString()) - Double.parseDouble(bi.can11.getText().toString()));
-                    bi.can12.check(value > 1 ? bi.can1201.getId() : bi.can1202.getId());
+                    bi.can12.check(value > 0.6 ? bi.can1201.getId() : bi.can1202.getId());
                 }
 
                 @Override
@@ -173,7 +173,7 @@ public class SectionN02Activity extends AppCompatActivity implements EndSectionA
                     if (bi.can14.getText().toString().split(".").length > 1 || bi.can15.getText().toString().split(".").length > 1)
                         return;
                     double value = Math.abs(Double.parseDouble(bi.can14.getText().toString()) - Double.parseDouble(bi.can15.getText().toString()));
-                    bi.can16.check(value > 1 ? bi.can1601.getId() : bi.can1602.getId());
+                    bi.can16.check(value > 0.1 ? bi.can1601.getId() : bi.can1602.getId());
                 }
 
                 @Override
@@ -233,7 +233,7 @@ public class SectionN02Activity extends AppCompatActivity implements EndSectionA
                     if (bi.can18.getText().toString().split(".").length > 1 || bi.can19.getText().toString().split(".").length > 1)
                         return;
                     double value = Math.abs(Double.parseDouble(bi.can18.getText().toString()) - Double.parseDouble(bi.can19.getText().toString()));
-                    bi.can20.check(value > 1 ? bi.can2001.getId() : bi.can2002.getId());
+                    bi.can20.check(value > 0.3 ? bi.can2001.getId() : bi.can2002.getId());
                 }
 
                 @Override
