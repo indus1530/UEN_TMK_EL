@@ -16,13 +16,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
         <LinearLayout
             android:id="@+id/GrpName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
             <!-- ele_title1  tittle  -->
             <androidx.cardview.widget.CardView
@@ -65,7 +63,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <!-- ele11  Radio   -->
             <androidx.cardview.widget.CardView
@@ -290,7 +287,6 @@
                 </LinearLayout>
 
             </androidx.cardview.widget.CardView>
-
 
             <!-- ele14  Title   -->
             <androidx.cardview.widget.CardView
