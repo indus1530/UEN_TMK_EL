@@ -7,6 +7,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
 import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
@@ -16,8 +19,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.FamilyMembersContract;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.FormsContract;
@@ -128,7 +129,7 @@ public class SectionH01Activity extends AppCompatActivity {
 
         bi.arih21.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == bi.arih2103.getId()) {
-                Clear.clearAllFields(bi.fldGrpSecH04);
+//                Clear.clearAllFields(bi.fldGrpSecH04);
                 Clear.clearAllFields(bi.fldGrpCVarih26);
             }
         });
