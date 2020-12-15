@@ -111,8 +111,9 @@ public class SectionH01Activity extends AppCompatActivity {
         });
 
         bi.arih7.setOnCheckedChangeListener((group, checkedId) -> {
-            Clear.clearAllFields(bi.fldGrpCVarih8);
-            Clear.clearAllFields(bi.llarih9);
+            if (checkedId == bi.arih701.getId()) {
+                Clear.clearAllFields(bi.fldGrpCVarih8);
+            }
         });
 
         bi.arih14.setOnCheckedChangeListener((group, checkedId) -> {
@@ -129,7 +130,6 @@ public class SectionH01Activity extends AppCompatActivity {
 
         bi.arih21.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId == bi.arih2103.getId()) {
-//                Clear.clearAllFields(bi.fldGrpSecH04);
                 Clear.clearAllFields(bi.fldGrpCVarih26);
             }
         });
