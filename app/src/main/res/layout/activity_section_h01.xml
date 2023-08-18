@@ -538,7 +538,7 @@
                 <androidx.cardview.widget.CardView
                     android:id="@+id/fldGrpCVarih8"
                     style="@style/cardView"
-                    android:visibility='@{arih702.checked ? View.VISIBLE : View.GONE}'>
+                    android:visibility='@{arih701.checked ? View.GONE : View.VISIBLE}'>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -650,8 +650,7 @@
                     android:id="@+id/llarih9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility='@{arih1402.checked? View.GONE : View.VISIBLE}'>
+                    android:orientation="vertical">
 
 
                     <!-- arih9  Input-Numeric   -->
@@ -1088,7 +1087,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
-                        android:visibility='@{arih1402.checked? View.GONE : View.VISIBLE}'>
+                        android:visibility='@{arih1401.checked? View.VISIBLE : View.GONE}'>
 
                         <!-- arih15  Radio   -->
                         <androidx.cardview.widget.CardView
@@ -1212,7 +1211,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility='@{arih1602.checked? View.GONE : View.VISIBLE}'>
+                            android:visibility='@{arih1601.checked? View.VISIBLE : View.GONE}'>
 
                             <!-- arih17  Radio   -->
                             <androidx.cardview.widget.CardView
