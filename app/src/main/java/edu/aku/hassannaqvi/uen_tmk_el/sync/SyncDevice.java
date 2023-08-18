@@ -1,5 +1,7 @@
 package edu.aku.hassannaqvi.uen_tmk_el.sync;
 
+import static android.content.Context.MODE_PRIVATE;
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -22,8 +24,6 @@ import java.nio.charset.StandardCharsets;
 
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.core.MainApp;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class SyncDevice extends AsyncTask<Void, Integer, String> {
     private final SyncDevicInterface delegate;
@@ -82,7 +82,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
 
                 try {
                     jsonObject.addProperty("dist_id", MainApp.UC_ID);
-                    jsonObject.addProperty("imei", MainApp.IMEI);
+//                    jsonObject.addProperty("imei", MainApp.IMEI);
                     jsonObject.addProperty("appversion", MainApp.appInfo.getAppVersion());
                     jsonObject.addProperty("appname", context.getString(R.string.app_name));
 
@@ -102,7 +102,7 @@ public class SyncDevice extends AsyncTask<Void, Integer, String> {
                     sb.append(line).append("\n");
                 }
                 br.close();
-                System.out.println("" + sb.toString());
+                System.out.println("" + sb);
                 return sb.toString();
             } else {
                 System.out.println(connection.getResponseMessage());

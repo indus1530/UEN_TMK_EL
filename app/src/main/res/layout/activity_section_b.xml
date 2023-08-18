@@ -215,6 +215,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:textColor="@color/red"
                         android:hint="@string/elb4"
                         android:text="Sindh" />
 
@@ -261,6 +262,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:textColor="@color/red"
                         android:hint="@string/elb5"
                         android:text="Tando Mohammad Khan" />
 
@@ -307,6 +309,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:textColor="@color/red"
                         android:hint="@string/elb6" />
 
                 </LinearLayout>
@@ -352,6 +355,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:textColor="@color/red"
                         android:hint="@string/elb7" />
 
                 </LinearLayout>
@@ -397,6 +401,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:textColor="@color/red"
                         android:hint="@string/elb8" />
 
                 </LinearLayout>
@@ -442,6 +447,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:enabled="false"
+                        android:textColor="@color/red"
                         android:hint="@string/elb8a"
                         android:inputType="number" />
 
@@ -486,24 +492,28 @@
                     <RadioGroup
                         android:id="@+id/elb09"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <RadioButton
                             android:id="@+id/elb0901"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
                             android:text="@string/elb0901" />
 
                         <RadioButton
                             android:id="@+id/elb0902"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
                             android:text="@string/elb0902" />
 
                         <RadioButton
                             android:id="@+id/elb0903"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
                             android:text="@string/elb0903" />
 
                     </RadioGroup>
@@ -637,7 +647,8 @@
                             android:hint="DD/MM/YYYY"
                             app:dateFormat="dd-MM-yyyy"
                             app:maxDate="CR_DATE"
-                            app:minDate="20/10/2015" />
+                            app:minDate="20/10/2015"
+                            app:theme="@style/DatePickerEditTextDialogTheme" />
 
                     </LinearLayout>
 

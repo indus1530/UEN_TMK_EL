@@ -1,5 +1,15 @@
 package edu.aku.hassannaqvi.uen_tmk_el.ui.other;
 
+import static java.lang.Thread.sleep;
+import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES;
+import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MINIMUM_TIME_BETWEEN_UPDATES;
+import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_CONTACTS;
+import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_PHONE_STATE;
+import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.TWO_MINUTES;
+import static edu.aku.hassannaqvi.uen_tmk_el.utils.AndroidUtilityKt.dbBackup;
+import static edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt.getPermissionsList;
+import static edu.aku.hassannaqvi.uen_tmk_el.utils.SplashRepositoryKt.populatingSpinners;
+
 import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -50,16 +60,6 @@ import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivityLoginBinding;
 import kotlin.Unit;
 import kotlin.coroutines.CoroutineContext;
 
-import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MINIMUM_DISTANCE_CHANGE_FOR_UPDATES;
-import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MINIMUM_TIME_BETWEEN_UPDATES;
-import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_CONTACTS;
-import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.MY_PERMISSIONS_REQUEST_READ_PHONE_STATE;
-import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.TWO_MINUTES;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.AndroidUtilityKt.dbBackup;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt.getPermissionsList;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.SplashRepositoryKt.populatingSpinners;
-import static java.lang.Thread.sleep;
-
 public class LoginActivity extends Activity {
 
     protected static LocationManager locationManager;
@@ -92,7 +92,7 @@ public class LoginActivity extends Activity {
         }
 
         // populateAutoComplete();
-        gettingDeviceIMEI();
+//        gettingDeviceIMEI();
         Target viewTarget = new ViewTarget(bi.syncData.getId(), this);
 
         new ShowcaseView.Builder(this)
@@ -338,7 +338,7 @@ public class LoginActivity extends Activity {
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
-        MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
+//        MainApp.IMEI = ((TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE)).getDeviceId();
 
     }
 
