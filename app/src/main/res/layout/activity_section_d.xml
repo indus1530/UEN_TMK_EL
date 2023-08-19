@@ -531,7 +531,7 @@
                                     android:inputType="number"
                                     android:maxLength="4"
                                     app:defaultValue="9998"
-                                    app:maxValue="2020"
+                                    app:maxValue="2023"
                                     app:minValue="1930"
                                     app:type="range" />
 

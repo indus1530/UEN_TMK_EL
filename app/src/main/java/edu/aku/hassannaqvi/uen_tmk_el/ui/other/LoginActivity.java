@@ -72,6 +72,7 @@ public class LoginActivity extends Activity {
     int attemptCounter = 0;
     private UserLoginTask mAuthTask = null;
     ArrayAdapter<String> ucsAdapter;
+    private String language;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +107,9 @@ public class LoginActivity extends Activity {
 //        DB backup
         dbBackup(this);
         setListeners();
+
+        // By default language selection
+        MainApp.setLocale(this, "sd");
     }
 
     private void gettingDeviceIMEI() {
