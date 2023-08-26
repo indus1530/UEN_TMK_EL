@@ -1,5 +1,8 @@
 package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 
+import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.ADD_IMMUNIZATION;
+import static edu.aku.hassannaqvi.uen_tmk_el.ui.sections.SectionH01Activity.childListU2;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -32,9 +35,6 @@ import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionI01Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.models.MWRA_CHILD;
 import edu.aku.hassannaqvi.uen_tmk_el.ui.other.TakePhoto;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
-
-import static edu.aku.hassannaqvi.uen_tmk_el.CONSTANTS.ADD_IMMUNIZATION;
-import static edu.aku.hassannaqvi.uen_tmk_el.ui.sections.SectionH01Activity.childListU2;
 
 public class SectionI01Activity extends AppCompatActivity {
 
@@ -342,19 +342,14 @@ public class SectionI01Activity extends AppCompatActivity {
     }
 
 
-    public void takePhoto(int id) {
+    public void takePhoto(View view) {
 
         Intent intent = new Intent(this, TakePhoto.class);
 
         intent.putExtra("picID", MainApp.form.getElb8a() + "_" + MainApp.form.getElb11() + "_" + bi.i1b.getText().toString() + "_");
         intent.putExtra("childName", bi.i1b.getText().toString());
 
-/*
-        intent.putExtra("picID", "901001" + "_" + "A-0001-001" + "_" + "1" + "_");
-        intent.putExtra("childName", "Hassan");
-*/
-
-        if (id == 1) {
+        if (view.getId() == R.id.frontPhoto) {
             intent.putExtra("picView", "front".toUpperCase());
             startActivityForResult(intent, 1); // Activity is started with requestCode 1 = Front
         } else {
@@ -375,14 +370,14 @@ public class SectionI01Activity extends AppCompatActivity {
             // Check if the requestCode 1 = Front : 2 = Back -- resultCode 1 = Success : 2 = Failure
             // Results received with requestCode 1 = Front
 
-            if (requestCode == 1 && resultCode == 1) {
+            if (requestCode == 1 && resultCode == RESULT_OK) {
                 Toast.makeText(this, "Photo Taken", Toast.LENGTH_SHORT).show();
 
                 bi.frontFileName.setText(fileName);
                 bi.frontPhoto.setEnabled(false);
 
 
-            } else if (requestCode == 1 && resultCode != 1) {
+            } else if (requestCode == 1 && resultCode != RESULT_CANCELED) {
                 Toast.makeText(this, "Photo Cancelled", Toast.LENGTH_SHORT).show();
 
                 //TODO: Implement functionality below when photo was not taken
@@ -392,12 +387,12 @@ public class SectionI01Activity extends AppCompatActivity {
             }
 
             // Results received with requestCode 2 = Back
-            if (requestCode == 2 && resultCode == 1) {
+            if (requestCode == 2 && resultCode == RESULT_OK) {
                 Toast.makeText(this, "Photo Taken", Toast.LENGTH_SHORT).show();
 
                 bi.backFileName.setText(fileName);
                 bi.backPhoto.setEnabled(false);
-            } else if (requestCode == 2 && resultCode != 1) {
+            } else if (requestCode == 2 && resultCode != RESULT_CANCELED) {
 
                 Toast.makeText(this, "Photo Cancelled", Toast.LENGTH_SHORT).show();
 
