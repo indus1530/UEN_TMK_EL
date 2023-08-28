@@ -115,33 +115,34 @@
                             <RadioButton
                                 android:id="@+id/chg2601"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg2601" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/chg2601x"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:enabled='@{chg2601.checked}'
+                                android:gravity="center"
+                                android:hint="####"
+                                android:inputType="number"
+                                android:maxLength="4"
+                                android:tag="chg2601"
+                                android:text='@{chg2601.checked ? chg2601x.getText().toString() : ""}'
+                                app:maxValue="1000"
+                                app:minValue="1"
+                                app:type="range" />
 
                             <RadioButton
                                 android:id="@+id/chg2602"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg2602" />
 
                         </RadioGroup>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/chg2601x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="####"
-                            android:inputType="number"
-                            android:tag="chg2601"
-                            android:text='@{chg2601.checked ? chg2601x.getText().toString() : ""}'
-                            android:visibility='@{chg2601.checked ? View.VISIBLE : View.GONE}'
-                            android:maxLength="4"
-                            app:maxValue="1000"
-                            app:minValue="1"
-                            app:type="range" />
 
                     </LinearLayout>
 
@@ -305,33 +306,34 @@
                             <RadioButton
                                 android:id="@+id/chg2801"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg2801" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/chg2801x"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:enabled='@{chg2801.checked}'
+                                android:gravity="center"
+                                android:hint="###"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:tag="chg2801"
+                                android:text='@{chg2801.checked ? chg2801x.getText().toString() : ""}'
+                                app:maxValue="200"
+                                app:minValue="1"
+                                app:type="range" />
 
                             <RadioButton
                                 android:id="@+id/chg2802"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg2802" />
 
                         </RadioGroup>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/chg2801x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="###"
-                            android:inputType="number"
-                            android:tag="chg2801"
-                            android:text='@{chg2801.checked ? chg2801x.getText().toString() : ""}'
-                            android:visibility='@{chg2801.checked? View.VISIBLE : View.GONE}'
-                            android:maxLength="3"
-                            app:maxValue="200"
-                            app:minValue="1"
-                            app:type="range" />
 
                     </LinearLayout>
 
@@ -380,33 +382,34 @@
                             <RadioButton
                                 android:id="@+id/chg2901"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg2901" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/chg2901x"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:enabled='@{chg2901.checked}'
+                                android:gravity="center"
+                                android:hint="#####"
+                                android:inputType="number"
+                                android:maxLength="5"
+                                android:tag="chg2901"
+                                android:text='@{chg2901.checked ? chg2901x.getText().toString() : ""}'
+                                app:maxValue="10000"
+                                app:minValue="1"
+                                app:type="range" />
 
                             <RadioButton
                                 android:id="@+id/chg2902"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg2902" />
 
                         </RadioGroup>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/chg2901x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="#####"
-                            android:inputType="number"
-                            android:tag="chg2901"
-                            android:text='@{chg2901.checked ? chg2901x.getText().toString() : ""}'
-                            android:visibility='@{chg2901.checked? View.VISIBLE : View.GONE}'
-                            android:maxLength="5"
-                            app:maxValue="10000"
-                            app:minValue="1"
-                            app:type="range" />
 
                     </LinearLayout>
 
@@ -455,33 +458,34 @@
                             <RadioButton
                                 android:id="@+id/chg3001"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg3001" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/chg3001x"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:enabled='@{chg3001.checked}'
+                                android:gravity="center"
+                                android:hint="####"
+                                android:inputType="number"
+                                android:maxLength="4"
+                                android:tag="chg3001"
+                                android:text='@{chg3001.checked ? chg3001x.getText().toString() : ""}'
+                                app:maxValue="5000"
+                                app:minValue="1"
+                                app:type="range" />
 
                             <RadioButton
                                 android:id="@+id/chg3002"
                                 android:layout_width="0dp"
-                                android:layout_height="wrap_content"
+                                android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:text="@string/chg3002" />
 
                         </RadioGroup>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/chg3001x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="####"
-                            android:inputType="number"
-                            android:tag="chg3001"
-                            android:text='@{chg3001.checked ? chg3001x.getText().toString() : ""}'
-                            android:visibility='@{chg3001.checked? View.VISIBLE : View.GONE}'
-                            android:maxLength="4"
-                            app:maxValue="5000"
-                            app:minValue="1"
-                            app:type="range" />
 
                     </LinearLayout>
 
