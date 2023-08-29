@@ -1,5 +1,7 @@
 package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 
+import static edu.aku.hassannaqvi.uen_tmk_el.core.MainApp.form;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -27,8 +29,6 @@ import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionG01Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.ui.list_activity.FamilyMembersListActivity;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
 import kotlin.Pair;
-
-import static edu.aku.hassannaqvi.uen_tmk_el.core.MainApp.form;
 
 public class SectionG01Activity extends AppCompatActivity {
 
@@ -163,7 +163,9 @@ public class SectionG01Activity extends AppCompatActivity {
             SaveDraft();
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, SectionG02Activity.class).putExtra("chg1", !bi.chg101.isChecked()));
+                startActivity(new Intent(this, SectionG02Activity.class)
+                        .putExtra("chg1", !bi.chg101.isChecked())
+                        .putExtra("chg6", !bi.chg601.isChecked()));
             } else {
                 Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             }

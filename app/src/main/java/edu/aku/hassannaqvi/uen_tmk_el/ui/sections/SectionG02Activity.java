@@ -25,7 +25,7 @@ import edu.aku.hassannaqvi.uen_tmk_el.utils.JSONUtils;
 public class SectionG02Activity extends AppCompatActivity {
 
     ActivitySectionG02Binding bi;
-    public static boolean chg101;
+    public static boolean chg101, chg106;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,14 @@ public class SectionG02Activity extends AppCompatActivity {
     private void setupSkip() {
 
         chg101 = getIntent().getBooleanExtra("chg1", true);
+        chg106 = getIntent().getBooleanExtra("chg6", true);
         if (chg101) {
+            bi.fldGrpSecG07.setVisibility(View.GONE);
+            Clear.clearAllFields(bi.fldGrpSecG07);
+        } else
+            bi.fldGrpSecG07.setVisibility(View.VISIBLE);
+
+        if (chg106) {
             bi.fldGrpSecG07.setVisibility(View.GONE);
             Clear.clearAllFields(bi.fldGrpSecG07);
         } else

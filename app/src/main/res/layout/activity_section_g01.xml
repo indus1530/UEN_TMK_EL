@@ -320,34 +320,35 @@
 
                             <RadioButton
                                 android:id="@+id/chg401"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_weight="1"
+                                android:layout_height="match_parent"
                                 android:text="@string/chg401" />
+
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/chg401x"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="##"
+                                android:inputType="number"
+                                android:maxLength="2"
+                                android:tag="chg401"
+                                android:text='@{chg401.checked ? chg401x.getText().toString() : ""}'
+                                android:enabled='@{chg401.checked}'
+                                app:maxValue="60"
+                                app:minValue="1"
+                                app:type="range" />
 
                             <RadioButton
                                 android:id="@+id/chg402"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
                                 android:layout_weight="1"
+                                android:layout_height="match_parent"
                                 android:text="@string/chg402" />
 
                         </RadioGroup>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/chg401x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:gravity="center"
-                            android:hint="##"
-                            android:inputType="number"
-                            android:maxLength="2"
-                            android:tag="chg401"
-                            android:text='@{chg401.checked ? chg401x.getText().toString() : ""}'
-                            android:visibility='@{chg401.checked? View.VISIBLE : View.GONE}'
-                            app:maxValue="60"
-                            app:minValue="1"
-                            app:type="range" />
 
                     </LinearLayout>
 
@@ -1916,24 +1917,28 @@
                             <RadioGroup
                                 android:id="@+id/chg25"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content">
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal">
 
                                 <RadioButton
                                     android:id="@+id/chg2501"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
                                     android:text="@string/chg2501" />
 
                                 <RadioButton
                                     android:id="@+id/chg2502"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
                                     android:text="@string/chg2502" />
 
                                 <RadioButton
                                     android:id="@+id/chg2503"
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="match_parent"
                                     android:text="@string/chg2503" />
 
                             </RadioGroup>

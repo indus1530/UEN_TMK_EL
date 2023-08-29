@@ -333,7 +333,13 @@ public class SectionI01Activity extends AppCompatActivity {
 
 
     private boolean formValidation() {
-        return Validator.emptyCheckingContainer(this, bi.GrpName);
+        if (!Validator.emptyCheckingContainer(this, bi.GrpName))
+            return false;
+
+        if (bi.imi301.isChecked() && (!(bi.frontFileName.getText().toString().length() > 0) && !(bi.backFileName.getText().toString().length() > 0)))
+            return Validator.emptyCustomTextBox(this, bi.frontFileName, "Please capture the card image");
+
+        return true;
     }
 
 

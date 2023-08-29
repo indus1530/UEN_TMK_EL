@@ -188,9 +188,9 @@
                             android:id="@+id/can2"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:hint="###.#"
                             android:inputType="number"
                             android:maxLength="3"
-                            android:hint="###.#"
                             app:mask="###.#"
                             app:maxValue="200"
                             app:minValue="100"
@@ -237,9 +237,9 @@
                             android:id="@+id/can3"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:hint="###.#"
                             android:inputType="number"
                             android:maxLength="3"
-                            android:hint="###.#"
                             app:mask="###.#"
                             app:maxValue="250"
                             app:minValue="15"
@@ -285,24 +285,28 @@
                         <RadioGroup
                             android:id="@+id/can4"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
 
                             <RadioButton
                                 android:id="@+id/can401"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
                                 android:text="@string/can401" />
 
                             <RadioButton
                                 android:id="@+id/can402"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.7"
+                                android:layout_height="match_parent"
                                 android:text="@string/can402" />
 
                             <RadioButton
                                 android:id="@+id/can403"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.7"
+                                android:layout_height="match_parent"
                                 android:text="@string/can403" />
 
                         </RadioGroup>
@@ -357,6 +361,24 @@
                                 android:layout_weight="1"
                                 android:text="@string/can501" />
 
+                            <com.edittextpicker.aliazaz.EditTextPicker
+                                android:id="@+id/can501x"
+                                android:layout_width="0dp"
+                                android:layout_weight="1"
+                                android:layout_height="match_parent"
+                                android:gravity="center"
+                                android:hint="##.#"
+                                android:inputType="number"
+                                android:maxLength="3"
+                                android:tag="can501"
+                                android:text='@{can501.checked ? can501x.getText().toString() : ""}'
+                                android:enabled='@{can501.checked}'
+                                app:mask="##.#"
+                                app:maxValue="36"
+                                app:minValue="1"
+                                app:pattern="^(\\d{2,2}\\.\\d{1,1})$"
+                                app:type="range" />
+
                             <RadioButton
                                 android:id="@+id/can502"
                                 android:layout_width="0dp"
@@ -365,22 +387,6 @@
                                 android:text="@string/can502" />
 
                         </RadioGroup>
-
-                        <com.edittextpicker.aliazaz.EditTextPicker
-                            android:id="@+id/can501x"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="number"
-                            android:hint="##.#"
-                            app:mask="##.#"
-                            app:maxValue="36"
-                            app:minValue="1"
-                            app:pattern="^(\\d{2,2}\\.\\d{1,1})$"
-                            app:type="range"
-                            android:maxLength="3"
-                            android:tag="can501"
-                            android:text='@{can501.checked ? can501x.getText().toString() : ""}'
-                            android:visibility='@{can501.checked ? View.VISIBLE : View.GONE}' />
 
                     </LinearLayout>
 

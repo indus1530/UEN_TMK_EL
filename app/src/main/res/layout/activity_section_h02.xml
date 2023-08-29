@@ -111,6 +111,22 @@
                             android:layout_weight="1"
                             android:text="@string/arih2701" />
 
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/arih2701x"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="###"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:tag="arih2701"
+                            android:text='@{arih2701.checked ? arih2701x.getText().toString() : ""}'
+                            android:enabled='@{arih2701.checked}'
+                            app:maxValue="300"
+                            app:minValue="15"
+                            app:type="range" />
+
                         <RadioButton
                             android:id="@+id/arih2702"
                             android:layout_width="0dp"
@@ -119,21 +135,6 @@
                             android:text="@string/arih2702" />
 
                     </RadioGroup>
-
-                    <com.edittextpicker.aliazaz.EditTextPicker
-                        android:id="@+id/arih2701x"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="###"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:tag="arih2701"
-                        android:text='@{arih2701.checked ? arih2701x.getText().toString() : ""}'
-                        android:visibility='@{arih2701.checked? View.VISIBLE : View.GONE}'
-                        app:maxValue="300"
-                        app:minValue="15"
-                        app:type="range" />
 
                 </LinearLayout>
 
@@ -186,6 +187,22 @@
                             android:layout_weight="1"
                             android:text="@string/arih2801" />
 
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/arih2801x"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="###"
+                            android:inputType="number"
+                            android:maxLength="3"
+                            android:tag="arih2801"
+                            android:text='@{arih2801.checked ? arih2801x.getText().toString() : ""}'
+                            android:enabled='@{arih2801.checked}'
+                            app:maxValue="100"
+                            app:minValue="1"
+                            app:type="range" />
+
                         <RadioButton
                             android:id="@+id/arih2802"
                             android:layout_width="0dp"
@@ -194,21 +211,6 @@
                             android:text="@string/arih2802" />
 
                     </RadioGroup>
-
-                    <com.edittextpicker.aliazaz.EditTextPicker
-                        android:id="@+id/arih2801x"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="###"
-                        android:inputType="number"
-                        android:maxLength="3"
-                        android:tag="arih2801"
-                        android:text='@{arih2801.checked ? arih2801x.getText().toString() : ""}'
-                        android:visibility='@{arih2801.checked? View.VISIBLE : View.GONE}'
-                        app:maxValue="100"
-                        app:minValue="1"
-                        app:type="range" />
 
                 </LinearLayout>
 
@@ -376,6 +378,22 @@
                             android:layout_weight="1"
                             android:text="@string/arih3001" />
 
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/arih3001x"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="#####"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:tag="arih3001"
+                            android:text='@{arih3001.checked ? arih3001x.getText().toString() : ""}'
+                            android:enabled='@{arih3001.checked}'
+                            app:maxValue="10000"
+                            app:minValue="1"
+                            app:type="range" />
+
                         <RadioButton
                             android:id="@+id/arih3002"
                             android:layout_width="0dp"
@@ -384,21 +402,6 @@
                             android:text="@string/arih3002" />
 
                     </RadioGroup>
-
-                    <com.edittextpicker.aliazaz.EditTextPicker
-                        android:id="@+id/arih3001x"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="#####"
-                        android:inputType="number"
-                        android:maxLength="5"
-                        android:tag="arih3001"
-                        android:text='@{arih3001.checked ? arih3001x.getText().toString() : ""}'
-                        android:visibility='@{arih3001.checked? View.VISIBLE : View.GONE}'
-                        app:maxValue="10000"
-                        app:minValue="1"
-                        app:type="range" />
 
                 </LinearLayout>
 
@@ -646,6 +649,22 @@
                             android:layout_weight="1"
                             android:text="@string/arih3401" />
 
+                        <com.edittextpicker.aliazaz.EditTextPicker
+                            android:id="@+id/arih3401x"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:hint="#####"
+                            android:inputType="number"
+                            android:maxLength="5"
+                            android:tag="arih3401"
+                            android:text='@{arih3401.checked ? arih3401x.getText().toString() : ""}'
+                            android:enabled='@{arih3401.checked}'
+                            app:maxValue="50000"
+                            app:minValue="100"
+                            app:type="range" />
+
                         <RadioButton
                             android:id="@+id/arih3402"
                             android:layout_width="0dp"
@@ -654,21 +673,6 @@
                             android:text="@string/arih3402" />
 
                     </RadioGroup>
-
-                    <com.edittextpicker.aliazaz.EditTextPicker
-                        android:id="@+id/arih3401x"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:hint="#####"
-                        android:inputType="number"
-                        android:maxLength="5"
-                        android:tag="arih3401"
-                        android:text='@{arih3401.checked ? arih3401x.getText().toString() : ""}'
-                        android:visibility='@{arih3401.checked ? View.VISIBLE : View.GONE}'
-                        app:maxValue="50000"
-                        app:minValue="100"
-                        app:type="range" />
 
                 </LinearLayout>
 

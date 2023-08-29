@@ -156,11 +156,11 @@ public class LoginActivity extends Activity {
         bi.username.setError(null);
         bi.password.setError(null);
         Toast.makeText(this, String.valueOf(attemptCounter), Toast.LENGTH_SHORT).show();
-        if (attemptCounter == 7) {
+        /*if (attemptCounter == 7) {
             Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
             startActivity(iLogin);
 
-        } else {
+        } else {*/
             // Store values at the time of the login attempt.
             String username = bi.username.getText().toString();
             String password = bi.password.getText().toString();
@@ -193,7 +193,6 @@ public class LoginActivity extends Activity {
                 mAuthTask = new UserLoginTask(this, username, password);
                 mAuthTask.execute((Void) null);
             }
-        }
     }
 
     private boolean isPasswordValid(String password) {

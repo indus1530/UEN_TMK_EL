@@ -1,5 +1,7 @@
 package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 
+import static edu.aku.hassannaqvi.uen_tmk_el.core.MainApp.form;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,8 +30,6 @@ import edu.aku.hassannaqvi.uen_tmk_el.databinding.ActivitySectionH01Binding;
 import edu.aku.hassannaqvi.uen_tmk_el.ui.list_activity.FamilyMembersListActivity;
 import edu.aku.hassannaqvi.uen_tmk_el.utils.AppUtilsKt;
 import kotlin.Pair;
-
-import static edu.aku.hassannaqvi.uen_tmk_el.core.MainApp.form;
 
 public class SectionH01Activity extends AppCompatActivity {
 
@@ -111,9 +111,8 @@ public class SectionH01Activity extends AppCompatActivity {
         });
 
         bi.arih7.setOnCheckedChangeListener((group, checkedId) -> {
-            if (checkedId == bi.arih701.getId()) {
-                Clear.clearAllFields(bi.fldGrpCVarih8);
-            }
+            Clear.clearAllFields(bi.fldGrpCVarih8);
+            Clear.clearAllFields(bi.llarih9);
         });
 
         bi.arih14.setOnCheckedChangeListener((group, checkedId) -> {
@@ -155,7 +154,7 @@ public class SectionH01Activity extends AppCompatActivity {
             SaveDraft();
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, bi.arih301.isChecked() ? SectionH02Activity.class : MainApp.indexKishMWRA != null ? SectionI01Activity.class : SectionKActivity.class));
+                startActivity(new Intent(this, bi.arih301.isChecked() && bi.arih701.isChecked() ? SectionH02Activity.class : MainApp.indexKishMWRA != null ? SectionI01Activity.class : SectionKActivity.class));
             } else {
                 Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             }
