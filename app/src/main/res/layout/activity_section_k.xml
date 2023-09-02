@@ -2,7 +2,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-
     <data>
 
         <import type="android.view.View" />
@@ -23,7 +22,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
 
 
             <!-- wsk_title 1     -->
@@ -459,22 +457,22 @@
                         <RadioButton
                             android:id="@+id/wsk301"
                             android:layout_width="0dp"
-                            android:layout_weight="0.8"
                             android:layout_height="match_parent"
+                            android:layout_weight="0.8"
                             android:text="@string/wsk301" />
 
                         <RadioButton
                             android:id="@+id/wsk302"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
                             android:text="@string/wsk302" />
 
                         <RadioButton
                             android:id="@+id/wsk303"
                             android:layout_width="0dp"
-                            android:layout_weight="0.8"
                             android:layout_height="match_parent"
+                            android:layout_weight="0.8"
                             android:text="@string/wsk303" />
 
                     </RadioGroup>
@@ -619,15 +617,15 @@
                         <com.edittextpicker.aliazaz.EditTextPicker
                             android:id="@+id/wsk401x"
                             android:layout_width="0dp"
-                            android:layout_weight="1"
                             android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:enabled='@{wsk401.checked}'
                             android:gravity="center"
                             android:hint="###"
                             android:inputType="number"
                             android:maxLength="3"
                             android:tag="wsk401"
                             android:text='@{wsk401.checked ? wsk401x.getText().toString() : ""}'
-                            android:enabled='@{wsk401.checked}'
                             app:maxValue="300"
                             app:minValue="1"
                             app:type="range" />
@@ -649,7 +647,8 @@
             <!-- wsk5  Radio   -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/fldGrpCVwsk5"
-                style="@style/cardView">
+                style="@style/cardView"
+                android:visibility='@{wsk303.checked? View.VISIBLE : View.GONE}'>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -1399,22 +1398,22 @@
                                 <RadioButton
                                     android:id="@+id/wsk1401"
                                     android:layout_width="0dp"
-                                    android:layout_weight="1"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:text="@string/wsk1401" />
 
                                 <RadioButton
                                     android:id="@+id/wsk1402"
                                     android:layout_width="0dp"
-                                    android:layout_weight="1"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="1"
                                     android:text="@string/wsk1402" />
 
                                 <RadioButton
                                     android:id="@+id/wsk1498"
                                     android:layout_width="0dp"
-                                    android:layout_weight="0.6"
                                     android:layout_height="match_parent"
+                                    android:layout_weight="0.6"
                                     android:text="@string/wsk1498" />
                             </RadioGroup>
                         </LinearLayout>

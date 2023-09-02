@@ -25,7 +25,7 @@ import edu.aku.hassannaqvi.uen_tmk_el.utils.JSONUtils;
 public class SectionG02Activity extends AppCompatActivity {
 
     ActivitySectionG02Binding bi;
-    public static boolean chg101, chg106;
+    public static boolean chg101, chg106, chg9, chg10;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +40,9 @@ public class SectionG02Activity extends AppCompatActivity {
 
         chg101 = getIntent().getBooleanExtra("chg1", true);
         chg106 = getIntent().getBooleanExtra("chg6", true);
+        chg9 = getIntent().getBooleanExtra("chg9", true);
+        chg10 = getIntent().getBooleanExtra("chg10", true);
+
         if (chg101) {
             bi.fldGrpSecG07.setVisibility(View.GONE);
             Clear.clearAllFields(bi.fldGrpSecG07);
@@ -51,6 +54,14 @@ public class SectionG02Activity extends AppCompatActivity {
             Clear.clearAllFields(bi.fldGrpSecG07);
         } else
             bi.fldGrpSecG07.setVisibility(View.VISIBLE);
+
+        if (chg9 && chg10) {
+            bi.fldGrpSecG09.setVisibility(View.GONE);
+            Clear.clearAllFields(bi.fldGrpSecG09);
+        } else
+            bi.fldGrpSecG09.setVisibility(View.VISIBLE);
+
+        bi.chg27.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVchg29));
 
 
         bi.chg32.setOnCheckedChangeListener((group, checkedId) -> {

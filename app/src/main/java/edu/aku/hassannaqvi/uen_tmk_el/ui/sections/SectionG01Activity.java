@@ -165,7 +165,9 @@ public class SectionG01Activity extends AppCompatActivity {
                 finish();
                 startActivity(new Intent(this, SectionG02Activity.class)
                         .putExtra("chg1", !bi.chg101.isChecked())
-                        .putExtra("chg6", !bi.chg601.isChecked()));
+                        .putExtra("chg6", !bi.chg601.isChecked())
+                        .putExtra("chg9", bi.chg901.isChecked())
+                        .putExtra("chg10", bi.chg1001.isChecked()));
             } else {
                 Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             }

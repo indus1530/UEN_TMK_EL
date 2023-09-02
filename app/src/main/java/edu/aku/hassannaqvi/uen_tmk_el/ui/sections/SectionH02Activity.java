@@ -2,15 +2,18 @@ package edu.aku.hassannaqvi.uen_tmk_el.ui.sections;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+
+import com.validatorcrawler.aliazaz.Clear;
 import com.validatorcrawler.aliazaz.Validator;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.databinding.DataBindingUtil;
 import edu.aku.hassannaqvi.uen_tmk_el.R;
 import edu.aku.hassannaqvi.uen_tmk_el.contracts.FormsContract;
 import edu.aku.hassannaqvi.uen_tmk_el.core.DatabaseHelper;
@@ -22,6 +25,7 @@ import edu.aku.hassannaqvi.uen_tmk_el.utils.JSONUtils;
 public class SectionH02Activity extends AppCompatActivity {
 
     ActivitySectionH02Binding bi;
+    public static boolean arih10, arih11;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,16 @@ public class SectionH02Activity extends AppCompatActivity {
     }
 
     private void setupSkip() {
+        arih10 = getIntent().getBooleanExtra("arih10", true);
+        arih11 = getIntent().getBooleanExtra("arih11", true);
+
+        if (arih10 && arih11) {
+            bi.fldGrpSecH10.setVisibility(View.GONE);
+            Clear.clearAllFields(bi.fldGrpSecH10);
+        } else
+            bi.fldGrpSecH10.setVisibility(View.VISIBLE);
+
+        bi.arih29.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVarih30));
 
        /* bi.arih1.setOnCheckedChangeListener((group, checkedId) -> {
             if (checkedId != bi.arih101.getId()) {

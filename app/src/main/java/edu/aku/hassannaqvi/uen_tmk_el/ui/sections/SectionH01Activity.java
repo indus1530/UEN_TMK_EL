@@ -154,7 +154,10 @@ public class SectionH01Activity extends AppCompatActivity {
             SaveDraft();
             if (UpdateDB()) {
                 finish();
-                startActivity(new Intent(this, bi.arih301.isChecked() && bi.arih701.isChecked() ? SectionH02Activity.class : MainApp.indexKishMWRA != null ? SectionI01Activity.class : SectionKActivity.class));
+                startActivity(new Intent(this, bi.arih301.isChecked() && bi.arih701.isChecked() ?
+                        SectionH02Activity.class : MainApp.indexKishMWRA != null ? SectionI01Activity.class : SectionKActivity.class)
+                        .putExtra("arih10", bi.arih1001.isChecked())
+                        .putExtra("arih11", bi.arih1101.isChecked()));
             } else {
                 Toast.makeText(this, "Sorry. You can't go further.\n Please contact IT Team (Failed to update DB)", Toast.LENGTH_SHORT).show();
             }

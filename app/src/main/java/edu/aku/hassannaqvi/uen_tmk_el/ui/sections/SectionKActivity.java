@@ -37,7 +37,10 @@ public class SectionKActivity extends AppCompatActivity {
 
 
     private void setupSkip() {
-        bi.wsk3.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpCVwsk4));
+        bi.wsk3.setOnCheckedChangeListener((radioGroup, i) -> {
+            Clear.clearAllFields(bi.fldGrpCVwsk4);
+            Clear.clearAllFields(bi.fldGrpCVwsk5);
+        });
         bi.wsk8.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.wsk9cv));
         bi.wsk11.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpk11));
         bi.wsk12.setOnCheckedChangeListener((radioGroup, i) -> Clear.clearAllFields(bi.fldGrpk12));
