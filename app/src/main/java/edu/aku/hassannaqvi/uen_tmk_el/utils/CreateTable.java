@@ -15,7 +15,7 @@ public final class CreateTable {
     public static final String DATABASE_NAME = "uenTMKel2020.db";
     public static final String DB_NAME = "uenTMKel2020_copy.db";
     public static final String PROJECT_NAME = "uenTMKel2020";
-    public static final int DATABASE_VERSION = 2;
+    public static final int DATABASE_VERSION = 1;
 
     public static final String SQL_CREATE_FORMS = "CREATE TABLE "
             + FormsTable.TABLE_NAME + "("
@@ -152,7 +152,6 @@ public final class CreateTable {
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_UID + " TEXT,"
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_UUID + " TEXT,"
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB1 + " TEXT,"
-            + Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB7 + " TEXT,"
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB11 + " TEXT,"
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_FMUID + " TEXT,"
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_USERNAME + " TEXT,"
@@ -165,9 +164,4 @@ public final class CreateTable {
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_SYNCED + " TEXT, "
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_SYNCED_DATE + " TEXT, "
             + Mwra_ChildrenContract.MWRAChildTable.COLUMN_APPVERSION + " TEXT );";
-
-    public static final String SQL_ADD_COLUMN_ELB7 = ("ALTER TABLE "
-            + Mwra_ChildrenContract.MWRAChildTable.TABLE_NAME + " ADD COLUMN "
-            + Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB7 + " TEXT;");
-
 }

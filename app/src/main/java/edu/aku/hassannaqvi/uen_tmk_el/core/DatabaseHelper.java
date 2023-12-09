@@ -2,7 +2,6 @@ package edu.aku.hassannaqvi.uen_tmk_el.core;
 
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.DATABASE_NAME;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.DATABASE_VERSION;
-import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.SQL_ADD_COLUMN_ELB7;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.SQL_CREATE_BL_RANDOM;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.SQL_CREATE_DEATH;
 import static edu.aku.hassannaqvi.uen_tmk_el.utils.CreateTable.SQL_CREATE_DISTRICTS;
@@ -77,7 +76,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(SQL_ADD_COLUMN_ELB7);
     }
 
 
@@ -366,7 +364,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_UID, mwraChild.get_UID());
         values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_UUID, mwraChild.getUUID());
         values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB1, mwraChild.getElb1());
-        values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB7, mwraChild.getElb7());
         values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB11, mwraChild.getElb11());
         values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_FMUID, mwraChild.getFmuid());
         values.put(Mwra_ChildrenContract.MWRAChildTable.COLUMN_USERNAME, mwraChild.getUsername());
@@ -1122,7 +1119,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 Mwra_ChildrenContract.MWRAChildTable.COLUMN_UID,
                 Mwra_ChildrenContract.MWRAChildTable.COLUMN_UUID,
                 Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB1,
-                Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB7,
                 Mwra_ChildrenContract.MWRAChildTable.COLUMN_ELB11,
                 Mwra_ChildrenContract.MWRAChildTable.COLUMN_FMUID,
                 Mwra_ChildrenContract.MWRAChildTable.COLUMN_USERNAME,
